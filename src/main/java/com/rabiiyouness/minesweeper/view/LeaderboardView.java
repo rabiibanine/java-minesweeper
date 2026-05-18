@@ -32,19 +32,19 @@ public class LeaderboardView extends VBox {
         TableColumn<Score, String> player = new TableColumn<>("Player");
         player.setCellValueFactory(data ->
                 new SimpleStringProperty(
-                        String.valueOf(data.getValue().id())
+                        String.valueOf(data.getValue().getId())
                 )
         );
         TableColumn<Score, String> time = new TableColumn<>("Time");
         time.setCellValueFactory(data ->
                 new SimpleStringProperty(
-                        TimeFormatter.formatReadable(data.getValue().completionTimeSeconds())
+                        TimeFormatter.formatReadable(data.getValue().getCompletionTimeSeconds())
                 )
         );
         TableColumn<Score, String> date = new TableColumn<>("Date");
         date.setCellValueFactory(data ->
                 new SimpleStringProperty(
-                        data.getValue().playedAt().toLocalDate().toString()
+                        data.getValue().getPlayedAt().toLocalDate().toString()
                 )
         );
         table.getColumns().addAll(player, time, date);
