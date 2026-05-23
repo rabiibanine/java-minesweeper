@@ -10,7 +10,7 @@ public class LeaderboardView {
 
     public LeaderboardView () {
         root = new BorderPane();
-        root.setCenter(new Label("Game"));
+        root.setCenter(new Label("Leaderboard"));
     }
 
     public Parent getRoot() {
