@@ -1,0 +1,71 @@
+.menu-bottom-bar {
+    -fx-padding: 30px;
+    -fx-spacing: 20px; /* Forces a 20px gap between every button */
+    -fx-alignment: center; /* Ensures the buttons stay in the middle of the screen */
+    -fx-background-color: linear-gradient(to top, #111111, transparent); /* A cool fade effect at the bottom of the screen */
+}
+
+.menu-logo {
+    -fx-text-fill: #FF8C00;
+    -fx-font: bold 48px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* Base button style — applied to all 5 nav buttons */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #8B6914;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-text-fill: #E8940A;
+    -fx-font-family: "Inter";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1.5px;
+    -fx-padding: 14px 24px;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 8px;
+}
+
+/* PLAY button — filled orange, stands out as the primary action */
+.nav-button-primary {
+    -fx-background-color: #E8940A;
+    -fx-border-color: #E8940A;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-text-fill: #1A0F00;
+    -fx-font-family: "Arial";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1.5px;
+    -fx-padding: 14px 24px;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 8px;
+}
+
+/* Hover — outline buttons brighten border + subtle bg */
+.nav-button:hover {
+    -fx-border-color: #E8940A;
+    -fx-background-color: rgba(232, 148, 10, 0.08);
+    -fx-text-fill: #F0A020;
+}
+
+/* Hover — primary button darkens slightly */
+.nav-button-primary:hover {
+    -fx-background-color: #C87D08;
+    -fx-border-color: #C87D08;
+}
+
+/* Pressed states */
+.nav-button:pressed {
+    -fx-background-color: rgba(232, 148, 10, 0.15);
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.nav-button-primary:pressed {
+    -fx-background-color: #A86806;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
