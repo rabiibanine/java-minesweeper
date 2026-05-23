@@ -18,6 +18,13 @@ public class Main extends Application {
 
         Scene scene = new Scene(menuView.getView(), 800, 600);
 
+        String globalCss = getClass().getResource("/css/global.css").toExternalForm();
+        scene.getStylesheets().add(globalCss);
+
+        // (Optional) Load the menu-specific theme if you attached it to the menu root
+        String menuCss = getClass().getResource("/css/menu.css").toExternalForm();
+        scene.getStylesheets().add(menuCss);
+
         stage.setTitle("Minesweeper Plus");
         stage.setScene(scene);
 

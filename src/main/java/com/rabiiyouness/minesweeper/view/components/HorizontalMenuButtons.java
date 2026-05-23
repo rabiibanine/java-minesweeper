@@ -13,19 +13,19 @@ public class HorizontalMenuButtons {
     private List<Button> buttons = new ArrayList<>();
 
     public Pane getComponent() {
-        HBox component = new HBox();
-        component.setSpacing(15);
-        component.setAlignment(Pos.CENTER);
+        HBox horizontalMenuButtons = new HBox();
+
+        horizontalMenuButtons.getStyleClass().add("menu-bottom-bar");
 
         String[] buttonsLabels = {"Play", "Leaderboard", "Options", "Credits", "Exit"};
 
         for (String s: buttonsLabels) {
             Button button = new Button(s);
-            component.getChildren().add(button);
+            horizontalMenuButtons.getChildren().add(button);
             buttons.add(button);
         }
 
-        return component;
+        return horizontalMenuButtons;
     }
 
 

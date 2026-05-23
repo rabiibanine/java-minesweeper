@@ -1,0 +1,28 @@
+/* 1. Set the global background color for the whole application */
+.root {
+    -fx-background-color: #1A1A1D; /* A very deep, sleek dark gray/black */
+}
+
+/* 2. Strip the default JavaFX button styling and make them flat & modern */
+.button {
+    -fx-background-color: transparent; /* No background by default */
+    -fx-text-fill: #A6A6A8;            /* Soft off-white text */
+    -fx-font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 24px;            /* Gives the text breathing room */
+    -fx-cursor: hand;                  /* Turns the mouse into a pointer */
+}
+
+/* 3. The Hover State (When the user moves their mouse over the button) */
+.button:hover {
+    -fx-text-fill: #FFFFFF;            /* Text turns pure white */
+    -fx-background-color: #2D2D30;     /* Slight highlight behind the text */
+    -fx-background-radius: 8px;        /* Softly rounded corners on the highlight */
+}
+
+/* 4. The Click State (When actively clicking down) */
+.button:pressed {
+    -fx-background-color: #3F3F42;
+    -fx-translate-y: 2px;              /* Physically pushes the button down 2 pixels! */
+}
