@@ -3,6 +3,7 @@
 // ==========================
 package com.rabiiyouness.minesweeper;
 
+import com.rabiiyouness.minesweeper.controller.MainController;
 import com.rabiiyouness.minesweeper.view.screens.MenuView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,18 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        MenuView menuView = new MenuView();
-
-        Scene scene = new Scene(menuView.getView(), 800, 600);
-
-
-
-        stage.setTitle("Minesweeper Plus");
-        stage.setScene(scene);
-
-        stage.show();
-
-
+        MainController mainController = new MainController(stage);
+        mainController.init();
     }
 
 

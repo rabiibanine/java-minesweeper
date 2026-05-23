@@ -2,30 +2,37 @@ package com.rabiiyouness.minesweeper.view.screens;
 
 import com.rabiiyouness.minesweeper.view.components.HorizontalMenuButtons;
 import com.rabiiyouness.minesweeper.view.components.MenuLogo;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-
 
 public class MenuView {
 
-    public Pane getView() {
-        BorderPane menuView = new BorderPane();
+    private final BorderPane root;
+    private final HorizontalMenuButtons horizontalMenuButtons;
 
+    public MenuView() {
+        horizontalMenuButtons = new HorizontalMenuButtons();
         MenuLogo menuLogo = new MenuLogo();
 
-        HorizontalMenuButtons horizontalMenuButtons = new HorizontalMenuButtons();
-
-        menuView.setCenter(menuLogo.getComponent());
-        menuView.setBottom(horizontalMenuButtons.getComponent());
+        root = new BorderPane();
+        root.setCenter(menuLogo.getComponent());
+        root.setBottom(horizontalMenuButtons.getComponent());
 
         String globalCss = getClass().getResource("/css/global.css").toExternalForm();
-        menuView.getStylesheets().add(globalCss);
+        root.getStylesheets().add(globalCss);
 
         String menuCss = getClass().getResource("/css/menu.css").toExternalForm();
-        menuView.getStylesheets().add(menuCss);
-
-        return menuView;
-
+        root.getStylesheets().add(menuCss);
     }
 
+    public Parent getRoot() { return root; }
+
+    public Button getPlayButton() {
+        return horizontalMenuButtons.getButtons().getFirst();
+    }
+
+    public Button getExitButton() {
+        return horizontalMenuButtons.getButtons().get(4);
+    }
 }

@@ -33,5 +33,8 @@ public class HorizontalMenuButtons {
         return horizontalMenuButtons;
     }
 
+    public List<Button> getButtons() {
+        return this.buttons;
+    }
 
 }
