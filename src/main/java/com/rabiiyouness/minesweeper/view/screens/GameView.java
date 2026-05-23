@@ -15,7 +15,7 @@ public class GameView {
 
         root = new BorderPane();
         // TEMP
-        root.setCenter(new Label("hello"));
+        root.setCenter(new Label("Game"));
 //        root.setTop(gameTopBar);
 //        root.setCenter(gameBoard);
     }

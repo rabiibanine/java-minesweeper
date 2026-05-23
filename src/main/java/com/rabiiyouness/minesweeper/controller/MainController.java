@@ -8,13 +8,13 @@ public class MainController {
 
     private Stage stage;
     MenuController menuController;
-    LeaderboardController gameController;
+    GameController gameController;
     LeaderboardController leaderboardController;
 
     public MainController(Stage stage) {
         this.stage = stage;
         this.menuController = new MenuController(this);
-        this.gameController = new LeaderboardController(this);
+        this.gameController = new GameController(this);
         this.leaderboardController = new LeaderboardController(this);
     }
 
@@ -32,6 +32,6 @@ public class MainController {
     }
 
     public void handlePlayButton() {
-        // TODO
+        navigate(gameController.getRoot());
     }
 }
