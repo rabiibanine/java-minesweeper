@@ -1,6 +1,7 @@
 package com.rabiiyouness.minesweeper.view.components;
 
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -12,7 +13,7 @@ public class HorizontalMenuButtons {
 
     private List<Button> buttons = new ArrayList<>();
 
-    public Pane getComponent() {
+    public Parent getComponent() {
         HBox horizontalMenuButtons = new HBox();
 
         horizontalMenuButtons.getStyleClass().add("menu-bottom-bar");
