@@ -9,9 +9,8 @@ public class MenuLogo {
     public Pane getComponent() {
         StackPane menuLogo = new StackPane();
 
-        menuLogo.getStyleClass().add("menu-logo");
-
         Label logoLabel = new Label("MINESWEEPER +");
+        logoLabel.getStyleClass().add("menu-logo");
 
         menuLogo.getChildren().add(logoLabel);
 

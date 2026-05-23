@@ -17,12 +17,17 @@ public class HorizontalMenuButtons {
 
         horizontalMenuButtons.getStyleClass().add("menu-bottom-bar");
 
-        String[] buttonsLabels = {"Play", "Leaderboard", "Options", "Credits", "Exit"};
+        String[] buttonsLabels = {"PLAY", "LEADERBOARD", "OPTIONS", "CREDITS", "EXIT"};
 
         for (String s: buttonsLabels) {
             Button button = new Button(s);
-            horizontalMenuButtons.getChildren().add(button);
             buttons.add(button);
+            horizontalMenuButtons.getChildren().add(button);
+            if (s.equals("PLAY")) {
+                button.getStyleClass().add("nav-button-primary");
+            } else {
+                button.getStyleClass().add("nav-button");
+            }
         }
 
         return horizontalMenuButtons;

@@ -21,7 +21,6 @@ public class Main extends Application {
         String globalCss = getClass().getResource("/css/global.css").toExternalForm();
         scene.getStylesheets().add(globalCss);
 
-        // (Optional) Load the menu-specific theme if you attached it to the menu root
         String menuCss = getClass().getResource("/css/menu.css").toExternalForm();
         scene.getStylesheets().add(menuCss);
 
