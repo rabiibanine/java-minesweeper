@@ -26,6 +26,8 @@ public class MenuController {
     public void bindEvents() {
         // Play event
         menuView.getPlayButton().setOnAction(event -> controller.handlePlayButton());
+        // Leaderboard event
+        menuView.getLeaderboardButton().setOnAction(event -> controller.handleLeaderboardButton());
         // Exit event
         menuView.getExitButton().setOnAction(event -> Platform.exit());
     }

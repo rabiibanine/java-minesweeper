@@ -4,6 +4,7 @@ import com.rabiiyouness.minesweeper.view.components.HorizontalMenuButtons;
 import com.rabiiyouness.minesweeper.view.components.MenuLogo;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.layout.BorderPane;
 
 public class MenuView {
@@ -34,5 +35,9 @@ public class MenuView {
 
     public Button getExitButton() {
         return horizontalMenuButtons.getButtons().get(4);
+    }
+
+    public Button getLeaderboardButton() {
+        return horizontalMenuButtons.getButtons().get(1);
     }
 }
