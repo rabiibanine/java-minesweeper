@@ -34,4 +34,8 @@ public class MainController {
     public void handlePlayButton() {
         navigate(gameController.getRoot());
     }
+
+    public void handleLeaderboardButton() {
+        navigate(leaderboardController.getRoot());
+    }
 }
