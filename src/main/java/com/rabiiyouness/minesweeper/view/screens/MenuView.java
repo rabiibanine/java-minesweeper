@@ -18,6 +18,11 @@ public class MenuView {
         menuView.setCenter(menuLogo.getComponent());
         menuView.setBottom(horizontalMenuButtons.getComponent());
 
+        String globalCss = getClass().getResource("/css/global.css").toExternalForm();
+        menuView.getStylesheets().add(globalCss);
+
+        String menuCss = getClass().getResource("/css/menu.css").toExternalForm();
+        menuView.getStylesheets().add(menuCss);
 
         return menuView;
 
