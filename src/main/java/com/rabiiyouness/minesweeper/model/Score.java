@@ -4,5 +4,35 @@ import com.rabiiyouness.minesweeper.model.enums.Difficulty;
 
 import java.time.LocalDateTime;
 
-public record Score(long id, Difficulty difficulty, int completionTimeSeconds, LocalDateTime playedAt) {
+
+
+public class Score {
+    private static long id_comp = 0;
+
+    private final long id;
+    private final Difficulty difficulty;
+    private final int completionTimeSeconds;
+    private final LocalDateTime playedAt;
+
+    public Score(Difficulty difficulty, int completionTimeSeconds, LocalDateTime playedAt) {
+        this.id = id_comp++;
+        this.difficulty = difficulty;
+        this.completionTimeSeconds = completionTimeSeconds;
+        this.playedAt = playedAt;
+    }
+
+    public long getId() {return id;}
+    public Difficulty getDifficulty() {return difficulty;}
+    public int getCompletionTimeSeconds() {return completionTimeSeconds;}
+    public LocalDateTime getPlayedAt() {return playedAt;}
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id=" + id +
+                ", difficulty=" + difficulty +
+                ", completionTimeSeconds=" + completionTimeSeconds +
+                ", playedAt=" + playedAt +
+                '}';
+    }
 }

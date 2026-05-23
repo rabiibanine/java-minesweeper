@@ -4,6 +4,7 @@
 package com.rabiiyouness.minesweeper;
 
 import com.rabiiyouness.minesweeper.model.Board;
+import com.rabiiyouness.minesweeper.model.Position;
 import com.rabiiyouness.minesweeper.model.enums.Difficulty;
 import com.rabiiyouness.minesweeper.view.MainView;
 import javafx.application.Application;
@@ -74,13 +75,6 @@ public class Main extends Application {
             Difficulty difficulty,
             SimpleIntegerProperty remainingMines
     ) {
-
-        board = new Board(
-                difficulty.getRows(),
-                difficulty.getColumns(),
-                difficulty.getMines(),
-                difficulty
-        );
 
         remainingMines.set(difficulty.getMines());
 

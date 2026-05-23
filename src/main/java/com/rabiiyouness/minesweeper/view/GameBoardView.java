@@ -1,5 +1,6 @@
 package com.rabiiyouness.minesweeper.view;
 
+import com.rabiiyouness.minesweeper.model.Position;
 import com.rabiiyouness.minesweeper.view.components.TileButton;
 import com.rabiiyouness.minesweeper.model.Board;
 import javafx.geometry.Pos;
@@ -26,12 +27,12 @@ public class GameBoardView extends StackPane {
         gridPane.getChildren().clear();
         gridPane.getColumnConstraints().clear();
         gridPane.getRowConstraints().clear();
-        buttons = new TileButton[board.getRows()][board.getColumns()];
-        for (int c = 0; c < board.getColumns(); c++) {
+        buttons = new TileButton[board.getRows()][board.getCols()];
+        for (int c = 0; c < board.getCols(); c++) {
             ColumnConstraints constraints = new ColumnConstraints();
             constraints.setHgrow(Priority.ALWAYS);
             constraints.setFillWidth(true);
-            constraints.setPercentWidth(100.0 / board.getColumns());
+            constraints.setPercentWidth(100.0 / board.getCols());
             gridPane.getColumnConstraints().add(constraints);
         }
         for (int r = 0; r < board.getRows(); r++) {
@@ -42,9 +43,9 @@ public class GameBoardView extends StackPane {
             gridPane.getRowConstraints().add(constraints);
         }
         for (int r = 0; r < board.getRows(); r++) {
-            for (int c = 0; c < board.getColumns(); c++) {
+            for (int c = 0; c < board.getCols(); c++) {
                 TileButton button = new TileButton(r, c);
-                button.render(board.tileAt(r, c));
+                button.render(board.getTileAt(new Position(r, c)));
                 button.setOnMouseClicked(event -> handler.handle(button, event));
                 buttons[r][c] = button;
                 gridPane.add(button, c, r);
@@ -54,8 +55,8 @@ public class GameBoardView extends StackPane {
 
     public void render(Board board) {
         for (int r = 0; r < board.getRows(); r++) {
-            for (int c = 0; c < board.getColumns(); c++) {
-                buttons[r][c].render(board.tileAt(r, c));
+            for (int c = 0; c < board.getCols(); c++) {
+                buttons[r][c].render(board.getTileAt(new Position(r, c)));
             }
         }
     }
