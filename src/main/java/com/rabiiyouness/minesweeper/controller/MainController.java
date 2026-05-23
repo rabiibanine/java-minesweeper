@@ -1,6 +1,5 @@
 package com.rabiiyouness.minesweeper.controller;
 
-import com.rabiiyouness.minesweeper.view.screens.MenuView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -8,13 +7,18 @@ import javafx.stage.Stage;
 public class MainController {
 
     private Stage stage;
+    MenuController menuController;
+    LeaderboardController gameController;
+    LeaderboardController leaderboardController;
 
     public MainController(Stage stage) {
         this.stage = stage;
+        this.menuController = new MenuController(this);
+        this.gameController = new LeaderboardController(this);
+        this.leaderboardController = new LeaderboardController(this);
     }
 
     public void init() {
-        MenuController menuController = new MenuController(this);
         Scene scene = new Scene(menuController.getRoot(), 800, 600);
 
         stage.setTitle("MINESWEEPER PLUS");
@@ -25,5 +29,9 @@ public class MainController {
 
     public void navigate(Parent newRoot) {
         stage.getScene().setRoot(newRoot);
+    }
+
+    public void handlePlayButton() {
+        // TODO
     }
 }
