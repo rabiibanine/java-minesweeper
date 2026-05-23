@@ -4,14 +4,16 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
-public class GameView {
+public class OptionsView {
+
     private BorderPane root;
 
-    public GameView() {
+    public OptionsView() {
 
         root = new BorderPane();
-        root.setCenter(new Label("Game"));
+        root.setCenter(new Label("Options"));
     }
+
     public Parent getRoot() {
         return root;
     }

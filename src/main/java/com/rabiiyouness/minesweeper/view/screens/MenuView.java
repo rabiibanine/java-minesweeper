@@ -1,5 +1,6 @@
 package com.rabiiyouness.minesweeper.view.screens;
 
+import com.rabiiyouness.minesweeper.controller.MenuController;
 import com.rabiiyouness.minesweeper.view.components.HorizontalMenuButtons;
 import com.rabiiyouness.minesweeper.view.components.MenuLogo;
 import javafx.scene.Parent;
@@ -33,11 +34,19 @@ public class MenuView {
         return horizontalMenuButtons.getButtons().getFirst();
     }
 
-    public Button getExitButton() {
-        return horizontalMenuButtons.getButtons().get(4);
-    }
-
     public Button getLeaderboardButton() {
         return horizontalMenuButtons.getButtons().get(1);
+    }
+
+    public Button getOptionsButton() {
+        return horizontalMenuButtons.getButtons().get(2);
+    }
+
+    public Button getCreditsButton() {
+        return horizontalMenuButtons.getButtons().get(3);
+    }
+
+    public Button getExitButton() {
+        return horizontalMenuButtons.getButtons().get(4);
     }
 }

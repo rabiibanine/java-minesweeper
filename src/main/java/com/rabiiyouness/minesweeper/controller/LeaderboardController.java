@@ -1,6 +1,5 @@
 package com.rabiiyouness.minesweeper.controller;
 
-import com.rabiiyouness.minesweeper.view.screens.GameView;
 import com.rabiiyouness.minesweeper.view.screens.LeaderboardView;
 import javafx.scene.Parent;
 

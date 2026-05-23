@@ -10,12 +10,16 @@ public class MainController {
     MenuController menuController;
     GameController gameController;
     LeaderboardController leaderboardController;
+    OptionsController optionsController;
+    CreditsController creditsController;
 
     public MainController(Stage stage) {
         this.stage = stage;
         this.menuController = new MenuController(this);
         this.gameController = new GameController(this);
         this.leaderboardController = new LeaderboardController(this);
+        this.optionsController = new OptionsController(this);
+        this.creditsController = new CreditsController(this);
     }
 
     public void init() {
@@ -37,5 +41,13 @@ public class MainController {
 
     public void handleLeaderboardButton() {
         navigate(leaderboardController.getRoot());
+    }
+
+    public void handleOptionsButton() {
+        navigate(optionsController.getRoot());
+    }
+
+    public void handleCreditsButton() {
+        navigate(creditsController.getRoot());
     }
 }

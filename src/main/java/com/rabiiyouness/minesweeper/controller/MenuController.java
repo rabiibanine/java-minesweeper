@@ -28,6 +28,10 @@ public class MenuController {
         menuView.getPlayButton().setOnAction(event -> controller.handlePlayButton());
         // Leaderboard event
         menuView.getLeaderboardButton().setOnAction(event -> controller.handleLeaderboardButton());
+        // Options event
+        menuView.getOptionsButton().setOnAction(event -> controller.handleOptionsButton());
+        // Credits event
+        menuView.getCreditsButton().setOnAction(event -> controller.handleCreditsButton());
         // Exit event
         menuView.getExitButton().setOnAction(event -> Platform.exit());
     }
