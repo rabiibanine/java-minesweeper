@@ -15,8 +15,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class GameTopBar {
 
     private HBox root;
-    private Button homeButton;
+    private TopBarPill flagPill;
+    private TopBarPill timerPill;
     private Button resetButton;
+    private Button homeButton;
 
     public GameTopBar() {
         this.root = new HBox();
@@ -53,8 +55,8 @@ public class GameTopBar {
         HBox rightSide = new HBox();
         rightSide.getStyleClass().add("topbar-right");
 
-        Parent timerPill = new TopBarPill("ci-timer").getComponent();
-        Parent flagPill = new TopBarPill("ci-flag-filled").getComponent();
+        timerPill = new TopBarPill("ci-timer");
+        flagPill = new TopBarPill("ci-flag-filled");
 
         resetButton = new Button();
         FontIcon resetIcon = new FontIcon("ci-restart");
@@ -70,7 +72,7 @@ public class GameTopBar {
         homeButton.setGraphic(homeIcon);
         homeButton.getStyleClass().add("topbar-icon-button");
 
-        rightSide.getChildren().addAll(flagPill, timerPill, resetButton, homeButton);
+        rightSide.getChildren().addAll(flagPill.getComponent(), timerPill.getComponent(), resetButton, homeButton);
         return rightSide;
     }
 
@@ -80,5 +82,13 @@ public class GameTopBar {
 
     public Button getResetButton() {
         return resetButton;
+    }
+
+    public void updateFlagPill(int remainingMines) {
+        flagPill.setValue(String.format("%03d", remainingMines));
+    }
+
+    public void updateTimerPill(int elapsedSeconds) {
+        timerPill.setValue(String.format("%03d", elapsedSeconds));
     }
 }

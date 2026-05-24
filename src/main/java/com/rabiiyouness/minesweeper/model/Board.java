@@ -98,6 +98,7 @@ public class Board {
      */
     public void toggleFlag(Position pos) {
         if (canInteract()) { return; }
+        if (getRemainingMines() == 0) {return;}
 
         Tile tile = getTileAt(pos);
         if (tile.getState() == TileState.REVEALED) { return; }

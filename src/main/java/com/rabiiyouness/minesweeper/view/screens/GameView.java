@@ -6,7 +6,6 @@ import com.rabiiyouness.minesweeper.view.components.GameTopBar;
 import com.rabiiyouness.minesweeper.view.components.TileButton;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 public class GameView {
@@ -50,7 +49,17 @@ public class GameView {
         return gameBoard.getTileButton(pos);
     }
 
-    public void resetBoard() {
+    public void resetGame(int remainingMines) {
         gameBoard.resetGameBoard();
+        gameTopBar.updateTimerPill(0);
+        gameTopBar.updateFlagPill(remainingMines);
+    }
+
+    public void updateFlagPill(int remainingMines) {
+        gameTopBar.updateFlagPill(remainingMines);
+    }
+
+    public void updateTimerPill(int elapsedSeconds) {
+        gameTopBar.updateTimerPill(elapsedSeconds);
     }
 }

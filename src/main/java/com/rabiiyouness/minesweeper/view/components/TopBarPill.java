@@ -20,6 +20,9 @@ public class TopBarPill {
         root = new HBox(icon, label);
         root.getStyleClass().add("topbar-pill");
         root.setAlignment(Pos.CENTER);
+        root.setPrefWidth(100); // icon + spacing + 3 digit label
+        root.setMinWidth(100);
+        root.setMaxWidth(100);
     }
 
     public void setValue(String value) {

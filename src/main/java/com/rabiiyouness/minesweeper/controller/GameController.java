@@ -8,8 +8,11 @@ import com.rabiiyouness.minesweeper.model.enums.TileState;
 import com.rabiiyouness.minesweeper.view.components.GameBoard;
 import com.rabiiyouness.minesweeper.view.components.TileButton;
 import com.rabiiyouness.minesweeper.view.screens.GameView;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
+import javafx.util.Duration;
 
 import java.util.List;
 
@@ -18,6 +21,7 @@ public class GameController {
     private MainController controller;
     private GameView gameView;
     private Difficulty difficulty;
+    private Timeline timer;
 
     private Board board;
 
@@ -28,7 +32,13 @@ public class GameController {
         board.initializeGame(difficulty);
 
         this.controller = controller;
-        this.gameView = new GameView(board.getRows(), board.getCols());
+        gameView = new GameView(board.getRows(), board.getCols());
+
+        // Initialize pills
+        gameView.updateFlagPill(board.getRemainingMines());
+
+        // Start timer
+        startTimer();
 
         bindEvents();
     }
@@ -45,7 +55,7 @@ public class GameController {
         // Reset Button
         gameView.getResetButton().setOnAction(event -> {
             board.initializeGame(difficulty);
-            gameView.resetBoard();
+            gameView.resetGame(board.getRemainingMines());
         });
         // Home Button
         gameView.getHomeButton().setOnAction(event -> controller.handleHomeButton());
@@ -77,6 +87,7 @@ public class GameController {
     public void handleFlag(Position pos) {
         Tile tile = board.getTileAt(pos);
         board.toggleFlag(pos);
+        gameView.updateFlagPill(board.getRemainingMines());
         updateTileView(tile);
     }
 
@@ -91,5 +102,18 @@ public class GameController {
             }
             case FLAGGED -> tileButton.setFlagged();
         }
+    }
+
+    private void startTimer() {
+        timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            board.tickSecond();
+            gameView.updateTimerPill(board.getElapsedSeconds());
+        }));
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
+    }
+
+    private void stopTimer() {
+        if (timer != null) timer.stop();
     }
 }
