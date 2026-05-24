@@ -2,6 +2,7 @@ package com.rabiiyouness.minesweeper.view.screens;
 
 import com.rabiiyouness.minesweeper.view.components.GameBoard;
 import com.rabiiyouness.minesweeper.view.components.GameTopBar;
+import com.rabiiyouness.minesweeper.view.components.TileButton;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,10 +12,11 @@ public class GameView {
 
     private BorderPane root;
     private GameTopBar gameTopBar;
+    private GameBoard gameBoard;
 
-    public GameView() {
+    public GameView(GameBoard gameBoard) {
         gameTopBar = new GameTopBar();
-        GameBoard gameBoard = new GameBoard();
+        this.gameBoard = gameBoard;
 
         root = new BorderPane();
         root.setTop(gameTopBar.getComponent());
@@ -33,5 +35,9 @@ public class GameView {
 
     public Button getHomeButton() {
         return gameTopBar.getHomeButton();
+    }
+
+    public TileButton[][] getTileButtons() {
+        return gameBoard.getTileButtons();
     }
 }

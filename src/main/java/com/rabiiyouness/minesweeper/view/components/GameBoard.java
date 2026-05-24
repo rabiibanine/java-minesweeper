@@ -12,14 +12,14 @@ public class GameBoard {
     private GridPane grid;
     private TileButton[][] tileButtons;
 
-    public GameBoard() {
+    public GameBoard(int rows, int cols) {
         grid = new GridPane();
         grid.getStyleClass().add("board-grid");
 
-        tileButtons = new TileButton[10][10];
+        tileButtons = new TileButton[rows][cols];
 
-        for (int i = 0; i < 10 ; i++) {
-            for (int j = 0; j < 10 ; j++) {
+        for (int i = 0; i < rows ; i++) {
+            for (int j = 0; j < cols ; j++) {
                 tileButtons[i][j] = new TileButton(i, j);
                 grid.add(tileButtons[i][j].getComponent(), j, i);
             }

@@ -5,8 +5,8 @@
 
 .topbar {
     -fx-background-color: #1e1208;
-    -fx-border-color: #c87020;
-    -fx-border-width: 0 0 1.5 0;
+    -fx-border-color: #f4b078;
+    -fx-border-width: 0 0 0.5 0;
     -fx-padding: 8 16 8 16;
     -fx-alignment: CENTER_LEFT;
     -fx-spacing: 12;
@@ -83,7 +83,7 @@
 .board-grid {
     -fx-background-color: #3d2e1a;
     -fx-border-color: #5a4020;
-    -fx-border-width: 1.5px;
+    -fx-border-width: 1px;
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-padding: 4;
