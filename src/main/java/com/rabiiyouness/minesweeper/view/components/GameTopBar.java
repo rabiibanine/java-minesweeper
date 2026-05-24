@@ -41,13 +41,19 @@ public class GameTopBar {
     public HBox buildLeftSide() {
         HBox leftSide = new HBox();
 
-        Label logoLabel = new Label("MINESWEEPER PLUS");
+        Label logoLabel = new Label("MINESWEEPER");
         logoLabel.setMaxHeight(Double.MAX_VALUE);
-        logoLabel.getStyleClass().add("topbar-logo");
+        logoLabel.getStyleClass().add("topbar-logo-label");
         logoLabel.setCache(true);
         logoLabel.setCacheHint(CacheHint.QUALITY);
 
-        leftSide.getChildren().addAll(logoLabel);
+        FontIcon plusIcon = new FontIcon("ci-add");
+        plusIcon.getStyleClass().add("topbar-logo-icon");
+        plusIcon.setCache(true);
+        plusIcon.setCacheHint(CacheHint.SPEED);
+
+        leftSide.getChildren().addAll(logoLabel, plusIcon);
+        leftSide.setAlignment(Pos.CENTER);
         return leftSide;
     }
 

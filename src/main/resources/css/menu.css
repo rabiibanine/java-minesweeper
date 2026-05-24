@@ -5,9 +5,14 @@
     -fx-background-color: linear-gradient(to top, #111111, transparent); /* A cool fade effect at the bottom of the screen */
 }
 
-.menu-logo {
+.menu-logo-label {
     -fx-text-fill: #FF8C00;
     -fx-font: bold 48px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.menu-logo-icon {
+    -fx-icon-color: #FF8C00;
+    -fx-icon-size: 64px;
 }
 
 /* Base button style — applied to all 5 nav buttons */

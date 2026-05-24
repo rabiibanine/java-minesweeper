@@ -13,12 +13,17 @@
 }
 
 /* App logo / title */
-.topbar-logo {
+.topbar-logo-label {
     -fx-font-family: Inter;
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #f4b078;
     -fx-letter-spacing: 2px;
+}
+
+.topbar-logo-icon {
+    -fx-icon-color: #f4b078;
+    -fx-icon-size: 36px
 }
 
 .topbar-right {
