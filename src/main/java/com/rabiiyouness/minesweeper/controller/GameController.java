@@ -17,12 +17,15 @@ public class GameController {
 
     private MainController controller;
     private GameView gameView;
+    private Difficulty difficulty;
 
     private Board board;
 
     public GameController(MainController controller) {
         board = new Board();
-        board.initializeGame(Difficulty.INTERMEDIATE);
+        // TODO implement some sort of way to input the difficulty
+        difficulty = Difficulty.INTERMEDIATE;
+        board.initializeGame(difficulty);
 
         this.controller = controller;
         this.gameView = new GameView(board.getRows(), board.getCols());
@@ -41,8 +44,8 @@ public class GameController {
     public void bindEvents() {
         // Reset Button
         gameView.getResetButton().setOnAction(event -> {
-            board.initializeGame(Difficulty.INTERMEDIATE);
-            gameView.getGameBoard().resetGameBoard();
+            board.initializeGame(difficulty);
+            gameView.resetBoard();
         });
         // Home Button
         gameView.getHomeButton().setOnAction(event -> controller.handleHomeButton());

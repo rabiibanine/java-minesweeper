@@ -50,7 +50,7 @@ public class GameView {
         return gameBoard.getTileButton(pos);
     }
 
-    public GameBoard getGameBoard() {
-        return gameBoard;
+    public void resetBoard() {
+        gameBoard.resetGameBoard();
     }
 }
