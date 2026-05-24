@@ -51,7 +51,7 @@ public class GameBoard {
     public void resetGameBoard() {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                tileButtons[row][col].reset();
+                tileButtons[row][col].setHidden();
             }
         }
     }

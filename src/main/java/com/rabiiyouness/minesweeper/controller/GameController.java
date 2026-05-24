@@ -24,7 +24,7 @@ public class GameController {
     public GameController(MainController controller) {
         board = new Board();
         // TODO implement some sort of way to input the difficulty
-        difficulty = Difficulty.INTERMEDIATE;
+        difficulty = Difficulty.BEGINNER;
         board.initializeGame(difficulty);
 
         this.controller = controller;
@@ -76,10 +76,7 @@ public class GameController {
 
     public void handleFlag(Position pos) {
         Tile tile = board.getTileAt(pos);
-        switch (tile.getState()) {
-            case HIDDEN -> tile.setState(TileState.FLAGGED);
-            case FLAGGED -> tile.setState(TileState.HIDDEN);
-        }
+        board.toggleFlag(pos);
         updateTileView(tile);
     }
 
@@ -88,7 +85,10 @@ public class GameController {
 
         switch (tile.getState()) {
             case HIDDEN -> tileButton.setHidden();
-            case REVEALED -> tileButton.setRevealed();
+            case REVEALED -> {
+                if (!tile.isMine()) tileButton.setRevealed(tile.getAdjacentMines());
+                else tileButton.setMine();
+            }
             case FLAGGED -> tileButton.setFlagged();
         }
     }

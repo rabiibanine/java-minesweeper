@@ -95,6 +95,7 @@
     -fx-icon-size: 18px;
 }
 
+
 /* ══════════════════════════════
    TILES
 ══════════════════════════════ */
@@ -162,12 +163,10 @@
     -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.7), 10, 0, 0, 0);
 }
 
-
-
 /* ── Number colors ── */
 .tile-number {
     -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 14px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-alignment: CENTER;
 }
@@ -192,6 +191,18 @@
 .tile-mine {
     -fx-background-color: #8b0000;
     -fx-border-color: #5a0000;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: default;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.8), 6, 0, 0, 3);
+}
+
+.tile-mine:hover {
+    -fx-background-color: #7b0000;
+    -fx-border-color: #2a1e0a;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.6), 6, 0, 0, 3);
+    -fx-cursor: default;
 }
 
 /* ══════════════════════════════
