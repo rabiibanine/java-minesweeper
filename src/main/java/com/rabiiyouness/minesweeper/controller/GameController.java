@@ -124,6 +124,8 @@ public class GameController {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 Position pos = new Position(row, col);
+                Tile tile = board.getTileAt(pos);
+                System.out.println("pos: " + row + "," + col + " state: " + tile.getState());
                 updateTileView(board.getTileAt(pos));
             }
         }
