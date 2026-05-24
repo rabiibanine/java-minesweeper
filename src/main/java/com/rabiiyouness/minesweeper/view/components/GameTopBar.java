@@ -12,7 +12,8 @@ import javafx.scene.layout.Region;
 
 public class GameTopBar {
 
-    HBox root;
+    private HBox root;
+    private Button homeButton;
 
     public GameTopBar() {
         this.root = new HBox();
@@ -46,7 +47,7 @@ public class GameTopBar {
     public HBox buildRightSide() {
         HBox rightSide = new HBox();
 
-        Button homeButton = new Button();
+        homeButton = new Button();
         ImageView icon = new ImageView(new Image(getClass().getResourceAsStream("/icons/home.png")));
         icon.setFitWidth(36);
         icon.setFitHeight(36);
@@ -55,5 +56,9 @@ public class GameTopBar {
 
         rightSide.getChildren().addAll(homeButton);
         return rightSide;
+    }
+
+    public Button getHomeButton() {
+        return homeButton;
     }
 }

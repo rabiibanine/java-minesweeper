@@ -11,6 +11,7 @@ public class GameController {
     public GameController(MainController controller) {
         this.controller = controller;
         this.gameView = new GameView();
+        bindEvents();
     }
 
     public GameView getView(){
@@ -19,5 +20,9 @@ public class GameController {
 
     public Parent getRoot() {
         return gameView.getRoot();
+    }
+
+    public void bindEvents() {
+        gameView.getHomeButton().setOnAction(event -> controller.handleHomeButton());
     }
 }

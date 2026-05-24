@@ -50,4 +50,6 @@ public class MainController {
     public void handleCreditsButton() {
         navigate(creditsController.getRoot());
     }
+
+    public void handleHomeButton() { navigate(menuController.getRoot()); }
 }
