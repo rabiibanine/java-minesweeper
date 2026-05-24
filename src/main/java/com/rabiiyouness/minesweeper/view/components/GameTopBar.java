@@ -51,6 +51,10 @@ public class GameTopBar {
 
     public HBox buildRightSide() {
         HBox rightSide = new HBox();
+        rightSide.getStyleClass().add("topbar-right");
+
+        Parent timerPill = new TopBarPill("ci-timer").getComponent();
+        Parent flagPill = new TopBarPill("ci-flag-filled").getComponent();
 
         resetButton = new Button();
         FontIcon resetIcon = new FontIcon("ci-restart");
@@ -66,7 +70,7 @@ public class GameTopBar {
         homeButton.setGraphic(homeIcon);
         homeButton.getStyleClass().add("topbar-icon-button");
 
-        rightSide.getChildren().addAll(resetButton, homeButton);
+        rightSide.getChildren().addAll(flagPill, timerPill, resetButton, homeButton);
         return rightSide;
     }
 
