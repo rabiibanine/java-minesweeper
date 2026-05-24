@@ -65,9 +65,8 @@
 }
 
 .topbar-icon-button-icon {
-    -fx-background-color: #f4b078;
-    -fx-min-width: 18px;
-    -fx-min-height: 18px;
+    -fx-icon-color: #f4b078;
+    -fx-icon-size: 36px;
 }
 
 /* ══════════════════════════════
@@ -89,6 +88,11 @@
     -fx-padding: 4;
     -fx-hgap: 2;
     -fx-vgap: 2;
+}
+
+.board-icon {
+    -fx-icon-color: #c87020;
+    -fx-icon-size: 18px;
 }
 
 /* ══════════════════════════════

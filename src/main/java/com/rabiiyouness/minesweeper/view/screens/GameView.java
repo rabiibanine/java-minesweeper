@@ -1,5 +1,6 @@
 package com.rabiiyouness.minesweeper.view.screens;
 
+import com.rabiiyouness.minesweeper.model.Position;
 import com.rabiiyouness.minesweeper.view.components.GameBoard;
 import com.rabiiyouness.minesweeper.view.components.GameTopBar;
 import com.rabiiyouness.minesweeper.view.components.TileButton;
@@ -14,9 +15,9 @@ public class GameView {
     private GameTopBar gameTopBar;
     private GameBoard gameBoard;
 
-    public GameView(GameBoard gameBoard) {
+    public GameView(int rows, int cols) {
         gameTopBar = new GameTopBar();
-        this.gameBoard = gameBoard;
+        gameBoard = new GameBoard(rows, cols);
 
         root = new BorderPane();
         root.setTop(gameTopBar.getComponent());
@@ -39,5 +40,9 @@ public class GameView {
 
     public TileButton[][] getTileButtons() {
         return gameBoard.getTileButtons();
+    }
+
+    public TileButton getTileButton(Position pos) {
+        return gameBoard.getTileButton(pos);
     }
 }

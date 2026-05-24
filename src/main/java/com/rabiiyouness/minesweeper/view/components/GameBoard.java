@@ -1,5 +1,6 @@
 package com.rabiiyouness.minesweeper.view.components;
 
+import com.rabiiyouness.minesweeper.model.Position;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
@@ -20,7 +21,7 @@ public class GameBoard {
 
         for (int i = 0; i < rows ; i++) {
             for (int j = 0; j < cols ; j++) {
-                tileButtons[i][j] = new TileButton(i, j);
+                tileButtons[i][j] = new TileButton();
                 grid.add(tileButtons[i][j].getComponent(), j, i);
             }
         }
@@ -35,8 +36,8 @@ public class GameBoard {
         return tileButtons;
     }
 
-    public TileButton getTileButton(int row, int col) {
-        return tileButtons[row][col];
+    public TileButton getTileButton(Position pos) {
+        return tileButtons[pos.row()][pos.column()];
     }
 
     public Parent getComponent() {

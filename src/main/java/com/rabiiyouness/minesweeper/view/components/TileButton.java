@@ -1,34 +1,30 @@
 package com.rabiiyouness.minesweeper.view.components;
 
-import com.rabiiyouness.minesweeper.model.Tile;
-import com.rabiiyouness.minesweeper.model.enums.TileState;
 import javafx.scene.Parent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TileButton {
 
     private StackPane root;
-    private TileState tileState;
-    private int row;
-    private int col;
+    private FontIcon flagIcon;
+    private FontIcon mineIcon;
 
-    public TileButton(int row, int col) {
-        this.tileState = TileState.HIDDEN;
-        this.row = row;
-        this.col = row;
+    public TileButton() {
 
         root = new StackPane();
         root.getStyleClass().add("tile");
         root.getStyleClass().add("tile-hidden");
 
-        root.setOnMouseClicked(e -> {
-            if (e.getButton() == MouseButton.PRIMARY) {
-                handleReveal();
-            } else if (e.getButton() == MouseButton.SECONDARY) {
-                handleFlag();
-            }
-        });
+        flagIcon = new FontIcon("ci-flag-filled");
+        flagIcon.getStyleClass().setAll("board-icon", "board-flag-icon");
+        root.getChildren().add(flagIcon);
+        flagIcon.setVisible(false);
+
+        mineIcon = new FontIcon("mdi2m-mine");
+        flagIcon.getStyleClass().setAll("board-icon", "board-flag-icon");
+        root.getChildren().add(mineIcon);
+        mineIcon.setVisible(false);
 
     }
 
@@ -36,13 +32,17 @@ public class TileButton {
         return root;
     }
 
-    public void handleReveal(){
-        if (!(tileState == TileState.HIDDEN)) return;
-        root.getStyleClass().remove("tile-hidden");
-        root.getStyleClass().add("tile-revealed");
-    };
+    public void setRevealed() {
+        root.getStyleClass().setAll("tile", "tile-revealed");
+    }
 
-    public void handleFlag() {
-        System.out.println("FLAGGED ROW(" + row + "), COL(" + col+")");
+    public void setFlagged() {
+        flagIcon.setVisible(true);
+    }
+
+
+    public void setHidden() {
+        root.getStyleClass().setAll("tile", "tile-hidden");
+        flagIcon.setVisible(false);
     }
 }
