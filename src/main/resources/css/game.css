@@ -1,0 +1,229 @@
+
+/* ══════════════════════════════
+   topbar
+══════════════════════════════ */
+
+.topbar {
+    -fx-background-color: #1e1208;
+    -fx-border-color: #c87020;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-padding: 8 16 8 16;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12;
+}
+
+/* App logo / title */
+.topbar-logo {
+    -fx-font-family: Inter;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+    -fx-letter-spacing: 2px;
+}
+
+/* Spacer to push right-side controls to the right */
+.topbar-spacer {
+    -fx-hgrow: ALWAYS;
+}
+
+/* Right-side pill containers (mine count, timer) */
+.topbar-pill {
+    -fx-background-color: #3a2a10;
+    -fx-background-radius: 20px;
+    -fx-border-color: #f4b078;
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-padding: 4 14 4 14;
+    -fx-spacing: 8;
+    -fx-alignment: CENTER;
+}
+
+.topbar-pill-icon {
+    -fx-background-color: #f4b078;
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+}
+
+.topbar-pill-label {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+}
+
+/* Icon-only topbar buttons (restart, settings) */
+.topbar-icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.topbar-icon-button:hover {
+    -fx-background-color: #3a2a10;
+    -fx-background-radius: 6px;
+}
+
+.topbar-icon-button-icon {
+    -fx-background-color: #f4b078;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+}
+
+/* ══════════════════════════════
+   BOARD CONTAINER
+══════════════════════════════ */
+
+.board-container {
+    -fx-background-color: #1e1208;
+    -fx-alignment: CENTER;
+    -fx-padding: 32;
+}
+
+.board-grid {
+    -fx-background-color: #3d2e1a;
+    -fx-border-color: #5a4020;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 4;
+    -fx-hgap: 2;
+    -fx-vgap: 2;
+}
+
+/* ══════════════════════════════
+   TILES
+══════════════════════════════ */
+
+/* --- DEFAULT TILE SIZE --- */
+.tile {
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+}
+
+/* --- HIDDEN (default state) --- */
+.tile-hidden {
+    -fx-background-color: linear-gradient(to bottom, #6b4c25, #4a3318);
+    -fx-border-color: #7a5828;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+
+    -fx-cursor: hand;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.5), 4, 0, 0, 2);
+}
+
+.tile-hidden:hover {
+    -fx-background-color: linear-gradient(to bottom, #8a6030, #5e4020);
+    -fx-border-color: #c87020;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.5), 8, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+/* --- REVEALED --- */
+.tile-revealed {
+    -fx-background-color: linear-gradient(to bottom, #141008, #1a1208);
+    -fx-border-color: #2a1e0a;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: default;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.8), 6, 0, 0, 3);
+}
+
+/* This is the fix — explicitly kill the .tile:hover when revealed */
+.tile-revealed:hover {
+    -fx-background-color: linear-gradient(to bottom, #141008, #1a1208);
+    -fx-border-color: #2a1e0a;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.8), 6, 0, 0, 3);
+    -fx-cursor: default;
+}
+
+/* --- FLAGGED --- */
+.tile-flagged {
+    -fx-background-color: linear-gradient(to bottom, #6b4c25, #4a3318);
+    -fx-border-color: #c87020;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.4), 6, 0, 0, 0);
+}
+
+.tile-flagged:hover {
+    -fx-background-color: linear-gradient(to bottom, #7a5830, #563c1e);
+    -fx-border-color: #e09030;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.7), 10, 0, 0, 0);
+}
+
+
+
+/* ── Number colors ── */
+.tile-number {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.tile-1 { -fx-text-fill: #ffffff; }
+.tile-2 { -fx-text-fill: #00bfff; }
+.tile-3 { -fx-text-fill: #c87020; }
+.tile-4 { -fx-text-fill: #9b59b6; }
+.tile-5 { -fx-text-fill: #e74c3c; }
+.tile-6 { -fx-text-fill: #1abc9c; }
+.tile-7 { -fx-text-fill: #f1c40f; }
+.tile-8 { -fx-text-fill: #95a5a6; }
+
+/* Flag icon on tile */
+.tile-flag-icon {
+    -fx-background-color: #c87020;
+    -fx-min-width: 14px;
+    -fx-min-height: 14px;
+}
+
+/* Mine revealed (game over) */
+.tile-mine {
+    -fx-background-color: #8b0000;
+    -fx-border-color: #5a0000;
+}
+
+/* ══════════════════════════════
+   ABORT MISSION BUTTON
+══════════════════════════════ */
+
+.abort-button {
+    -fx-background-color: #c87020;
+    -fx-text-fill: #1e1208;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1.5px;
+    -fx-padding: 12 32 12 32;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.abort-button:hover {
+    -fx-background-color: #e09030;
+}
+
+.abort-button:pressed {
+    -fx-background-color: #a06010;
+}
+
+.abort-button-icon {
+    -fx-background-color: #1e1208;
+    -fx-min-width: 14px;
+    -fx-min-height: 14px;
+}
+
+/* Bottom area wrapping the abort button */
+.bottom-bar {
+    -fx-alignment: CENTER;
+    -fx-padding: 24 0 24 0;
+    -fx-background-color: #1e1208;
+}
