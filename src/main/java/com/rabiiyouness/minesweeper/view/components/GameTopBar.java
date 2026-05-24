@@ -16,6 +16,7 @@ public class GameTopBar {
 
     private HBox root;
     private Button homeButton;
+    private Button resetButton;
 
     public GameTopBar() {
         this.root = new HBox();
@@ -51,18 +52,29 @@ public class GameTopBar {
     public HBox buildRightSide() {
         HBox rightSide = new HBox();
 
+        resetButton = new Button();
+        FontIcon resetIcon = new FontIcon("ci-restart");
+        resetIcon.setCache(true);
+        resetIcon.getStyleClass().add("topbar-icon-button-icon");
+        resetButton.setGraphic(resetIcon);
+        resetButton.getStyleClass().add("topbar-icon-button");
+
         homeButton = new Button();
-        FontIcon icon = new FontIcon("ci-home");
-        icon.setCache(true);
-        icon.getStyleClass().add("topbar-icon-button-icon");
-        homeButton.setGraphic(icon);
+        FontIcon homeIcon = new FontIcon("ci-home");
+        homeIcon.setCache(true);
+        homeIcon.getStyleClass().add("topbar-icon-button-icon");
+        homeButton.setGraphic(homeIcon);
         homeButton.getStyleClass().add("topbar-icon-button");
 
-        rightSide.getChildren().addAll(homeButton);
+        rightSide.getChildren().addAll(resetButton, homeButton);
         return rightSide;
     }
 
     public Button getHomeButton() {
         return homeButton;
+    }
+
+    public Button getResetButton() {
+        return resetButton;
     }
 }

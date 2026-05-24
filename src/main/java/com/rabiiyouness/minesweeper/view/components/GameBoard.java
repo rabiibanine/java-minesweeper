@@ -12,8 +12,12 @@ public class GameBoard {
     private StackPane root;
     private GridPane grid;
     private TileButton[][] tileButtons;
+    private int rows;
+    private int cols;
 
     public GameBoard(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
         grid = new GridPane();
         grid.getStyleClass().add("board-grid");
 
@@ -42,5 +46,13 @@ public class GameBoard {
 
     public Parent getComponent() {
         return root;
+    }
+
+    public void resetGameBoard() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                tileButtons[row][col].reset();
+            }
+        }
     }
 }

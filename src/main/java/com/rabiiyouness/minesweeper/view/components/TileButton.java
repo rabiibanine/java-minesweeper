@@ -13,8 +13,7 @@ public class TileButton {
     public TileButton() {
 
         root = new StackPane();
-        root.getStyleClass().add("tile");
-        root.getStyleClass().add("tile-hidden");
+        root.getStyleClass().setAll("tile", "tile-hidden");
 
         flagIcon = new FontIcon("ci-flag-filled");
         flagIcon.getStyleClass().setAll("board-icon", "board-flag-icon");
@@ -22,7 +21,7 @@ public class TileButton {
         flagIcon.setVisible(false);
 
         mineIcon = new FontIcon("mdi2m-mine");
-        flagIcon.getStyleClass().setAll("board-icon", "board-flag-icon");
+        flagIcon.getStyleClass().setAll("board-icon", "board-mine-icon");
         root.getChildren().add(mineIcon);
         mineIcon.setVisible(false);
 
@@ -40,9 +39,14 @@ public class TileButton {
         flagIcon.setVisible(true);
     }
 
-
     public void setHidden() {
         root.getStyleClass().setAll("tile", "tile-hidden");
         flagIcon.setVisible(false);
+    }
+
+    public void reset() {
+        root.getStyleClass().setAll("tile", "tile-hidden");
+        flagIcon.setVisible(false);
+        mineIcon.setVisible(false);
     }
 }

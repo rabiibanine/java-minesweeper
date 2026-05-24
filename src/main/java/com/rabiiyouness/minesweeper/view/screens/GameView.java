@@ -38,11 +38,19 @@ public class GameView {
         return gameTopBar.getHomeButton();
     }
 
+    public Button getResetButton() {
+        return gameTopBar.getResetButton();
+    }
+
     public TileButton[][] getTileButtons() {
         return gameBoard.getTileButtons();
     }
 
     public TileButton getTileButton(Position pos) {
         return gameBoard.getTileButton(pos);
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
     }
 }

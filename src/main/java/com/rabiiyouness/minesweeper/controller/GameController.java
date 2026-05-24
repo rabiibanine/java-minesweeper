@@ -39,6 +39,11 @@ public class GameController {
     }
 
     public void bindEvents() {
+        // Reset Button
+        gameView.getResetButton().setOnAction(event -> {
+            board.initializeGame(Difficulty.INTERMEDIATE);
+            gameView.getGameBoard().resetGameBoard();
+        });
         // Home Button
         gameView.getHomeButton().setOnAction(event -> controller.handleHomeButton());
 
