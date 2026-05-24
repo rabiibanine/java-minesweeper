@@ -4,6 +4,7 @@ import com.rabiiyouness.minesweeper.model.Board;
 import com.rabiiyouness.minesweeper.model.Position;
 import com.rabiiyouness.minesweeper.model.Tile;
 import com.rabiiyouness.minesweeper.model.enums.Difficulty;
+import com.rabiiyouness.minesweeper.model.enums.GameState;
 import com.rabiiyouness.minesweeper.model.enums.TileState;
 import com.rabiiyouness.minesweeper.view.components.GameBoard;
 import com.rabiiyouness.minesweeper.view.components.TileButton;
@@ -57,6 +58,7 @@ public class GameController {
             board.initializeGame(difficulty);
             gameView.resetGame(board.getRemainingMines());
         });
+
         // Home Button
         gameView.getHomeButton().setOnAction(event -> controller.handleHomeButton());
 
@@ -82,6 +84,17 @@ public class GameController {
         for (Tile tile : changed) {
             updateTileView(tile);
         }
+        if (board.getGameState() == GameState.WON) handleWin();
+        if (board.getGameState() == GameState.LOST) handleLoss();
+    }
+
+    private void handleWin() {
+        updateAllTilesView();
+        gameView.handleWin();
+    }
+
+    private void handleLoss() {
+        gameView.handleLoss();
     }
 
     public void handleFlag(Position pos) {
@@ -101,6 +114,18 @@ public class GameController {
                 else tileButton.setMine();
             }
             case FLAGGED -> tileButton.setFlagged();
+        }
+    }
+
+    public void updateAllTilesView() {
+        int rows = difficulty.getRows();
+        int cols = difficulty.getColumns();
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                Position pos = new Position(row, col);
+                updateTileView(board.getTileAt(pos));
+            }
         }
     }
 

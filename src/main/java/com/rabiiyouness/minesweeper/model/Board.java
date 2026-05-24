@@ -195,7 +195,7 @@ public class Board {
     private void autoFlagRemainingMines() {
         for (Tile[] row : tiles) {
             for (Tile t : row) {
-                if (t.isMine()) { t.setState(TileState.FLAGGED); }
+                if (t.isMine()) { toggleFlag(t.getPosition()); }
             }
         }
         flagsPlaced = mines;

@@ -31,7 +31,6 @@ public class GameBoard {
         }
 
         root = new StackPane();
-        root.getStyleClass().add("board-container");
         root.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         root.getChildren().add(grid);
     }
