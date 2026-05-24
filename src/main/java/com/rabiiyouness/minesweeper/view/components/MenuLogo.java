@@ -8,15 +8,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class MenuLogo {
-    public Parent getComponent() {
+    private HBox root;
+
+    public MenuLogo() {
 
         Label logoLabel = new Label("MINESWEEPER +");
         logoLabel.getStyleClass().add("menu-logo");
 
         StackPane menuLogoWrapper = new StackPane(logoLabel);
-        HBox menuLogo = new HBox(menuLogoWrapper);
-        menuLogo.setAlignment(Pos.CENTER);
+        root = new HBox(menuLogoWrapper);
+        root.setAlignment(Pos.CENTER);
 
-        return menuLogo;
+    }
+    public Parent getComponent() {
+        return root;
     }
 }
