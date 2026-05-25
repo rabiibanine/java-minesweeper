@@ -91,7 +91,9 @@ public class GameController {
 
     private void handleHomeButton() {
         if (board.getGameState() == GameState.RUNNING) {
-
+            PopupConfig confirmConfig = PopupFactory.createConfirmConfig(controller::navigateHome);
+            gameView.getPopupOverlay().show(confirmConfig);
+            return;
         };
         controller.navigateHome();
     }
