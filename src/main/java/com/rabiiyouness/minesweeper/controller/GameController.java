@@ -61,7 +61,7 @@ public class GameController {
         gameView.getResetButton().setOnAction(event -> handleReset());
 
         // Home Button
-        gameView.getHomeButton().setOnAction(event -> handleHomeButton());
+        gameView.getHomeButton().setOnAction(event -> handleHome());
 
         // Board Tiles
         for (int row = 0; row < board.getRows() ; row++) {
@@ -83,13 +83,18 @@ public class GameController {
 
      public void handleReset() {
         if (board.getGameState() == GameState.RUNNING) {
-
+            PopupConfig resetConfig = PopupFactory.createResetConfig(() -> {
+                board.initializeGame(difficulty);
+                gameView.resetGame(board.getRemainingMines());
+            });
+            gameView.getPopupOverlay().show(resetConfig);
+            return;
         };
         board.initializeGame(difficulty);
         gameView.resetGame(board.getRemainingMines());
     }
 
-    private void handleHomeButton() {
+    private void handleHome() {
         if (board.getGameState() == GameState.RUNNING) {
             PopupConfig confirmConfig = PopupFactory.createConfirmConfig(controller::navigateHome);
             gameView.getPopupOverlay().show(confirmConfig);

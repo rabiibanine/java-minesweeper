@@ -42,4 +42,15 @@ public class PopupFactory {
                 )
         );
     }
+
+    public static PopupConfig createResetConfig(Runnable onReset) {
+        return new PopupConfig(
+                "Reset?",
+                "Your progress will be lost.",
+                List.of(
+                        new PopupAction("Reset", onReset, true),
+                        new PopupAction("Cancel", () -> {}, false) // Empty runnable, overlay just closes
+                )
+        );
+    }
 }
