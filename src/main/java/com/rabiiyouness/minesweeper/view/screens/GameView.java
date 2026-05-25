@@ -1,10 +1,7 @@
 package com.rabiiyouness.minesweeper.view.screens;
 
 import com.rabiiyouness.minesweeper.model.Position;
-import com.rabiiyouness.minesweeper.view.components.ConfettiOverlay;
-import com.rabiiyouness.minesweeper.view.components.GameBoard;
-import com.rabiiyouness.minesweeper.view.components.GameTopBar;
-import com.rabiiyouness.minesweeper.view.components.TileButton;
+import com.rabiiyouness.minesweeper.view.components.*;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
@@ -17,24 +14,25 @@ public class GameView {
     private final GameTopBar gameTopBar;
     private final GameBoard gameBoard;
     private final ConfettiOverlay confettiOverlay;
+    private final PopupOverlay popupOverlay;
 
     public GameView(int rows, int cols) {
         gameTopBar = new GameTopBar();
         gameBoard = new GameBoard(rows, cols);
+        confettiOverlay = new ConfettiOverlay();
+        popupOverlay = new PopupOverlay();
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(gameTopBar.getComponent());
         borderPane.setCenter(gameBoard.getComponent());
 
-        confettiOverlay = new ConfettiOverlay();
-        root = new StackPane (borderPane, confettiOverlay.getComponent());
+        root = new StackPane(borderPane, confettiOverlay.getComponent(), popupOverlay.getComponent());
 
         String globalCss = getClass().getResource("/css/global.css").toExternalForm();
-        borderPane.getStylesheets().add(globalCss);
         root.getStylesheets().add(globalCss);
 
         String gameCss = getClass().getResource("/css/game.css").toExternalForm();
-        borderPane.getStylesheets().add(gameCss);
+        root.getStylesheets().add(gameCss);
 
     }
 
@@ -79,5 +77,13 @@ public class GameView {
     }
     public void handleLoss() {
         gameBoard.getComponent().getStyleClass().add("board-container-loss");
+    }
+
+    public PopupOverlay getPopupOverlay() {
+        return popupOverlay;
+    }
+
+    public void hidePopup() {
+        popupOverlay.hide();
     }
 }

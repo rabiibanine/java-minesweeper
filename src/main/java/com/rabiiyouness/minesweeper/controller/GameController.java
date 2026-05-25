@@ -5,16 +5,20 @@ import com.rabiiyouness.minesweeper.model.Position;
 import com.rabiiyouness.minesweeper.model.Tile;
 import com.rabiiyouness.minesweeper.model.enums.Difficulty;
 import com.rabiiyouness.minesweeper.model.enums.GameState;
-import com.rabiiyouness.minesweeper.model.enums.TileState;
-import com.rabiiyouness.minesweeper.view.components.GameBoard;
+import com.rabiiyouness.minesweeper.util.PopupFactory;
+import com.rabiiyouness.minesweeper.util.TimeFormatter;
+import com.rabiiyouness.minesweeper.view.components.PopupConfig;
 import com.rabiiyouness.minesweeper.view.components.TileButton;
 import com.rabiiyouness.minesweeper.view.screens.GameView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.util.Duration;
 
+import java.sql.Time;
 import java.util.List;
 
 public class GameController {
@@ -54,13 +58,10 @@ public class GameController {
 
     public void bindEvents() {
         // Reset Button
-        gameView.getResetButton().setOnAction(event -> {
-            board.initializeGame(difficulty);
-            gameView.resetGame(board.getRemainingMines());
-        });
+        gameView.getResetButton().setOnAction(event -> handleReset());
 
         // Home Button
-        gameView.getHomeButton().setOnAction(event -> controller.handleHomeButton());
+        gameView.getHomeButton().setOnAction(event -> handleHomeButton());
 
         // Board Tiles
         for (int row = 0; row < board.getRows() ; row++) {
@@ -77,6 +78,22 @@ public class GameController {
                 });
             }
         }
+
+    }
+
+     public void handleReset() {
+        if (board.getGameState() == GameState.RUNNING) {
+
+        };
+        board.initializeGame(difficulty);
+        gameView.resetGame(board.getRemainingMines());
+    }
+
+    private void handleHomeButton() {
+        if (board.getGameState() == GameState.RUNNING) {
+
+        };
+        controller.navigateHome();
     }
 
     public void handleReveal(Position pos) {
@@ -90,11 +107,23 @@ public class GameController {
 
     private void handleWin() {
         updateAllTilesView();
-        gameView.handleWin();
+        String formattedTime = TimeFormatter.formatReadable(board.getElapsedSeconds());
+        PopupConfig winConfig = PopupFactory.createWinConfig(
+                formattedTime,
+                this::handleReset,
+                controller::navigateHome
+        );
+        gameView.getPopupOverlay().show(winConfig);
     }
 
     private void handleLoss() {
-        gameView.handleLoss();
+
+        PopupConfig lossConfig = PopupFactory.createLoseConfig(
+                this::handleReset,
+                controller::navigateHome
+        );
+        gameView.getPopupOverlay().show(lossConfig);
+
     }
 
     public void handleFlag(Position pos) {
@@ -125,7 +154,6 @@ public class GameController {
             for (int col = 0; col < cols; col++) {
                 Position pos = new Position(row, col);
                 Tile tile = board.getTileAt(pos);
-                System.out.println("pos: " + row + "," + col + " state: " + tile.getState());
                 updateTileView(board.getTileAt(pos));
             }
         }
@@ -142,5 +170,18 @@ public class GameController {
 
     private void stopTimer() {
         if (timer != null) timer.stop();
+    }
+
+    // TODO remove this (DEBUGGING ONLY)
+    public void attachDebugKeybinds(Scene scene) {
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.W) handleWin();
+            if (event.getCode() == KeyCode.L) handleLoss();
+            if (event.getCode() == KeyCode.Y) gameView.hidePopup();
+        });
+    }
+
+    public GameState getGameState() {
+        return board.getGameState();
     }
 }
