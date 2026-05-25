@@ -1,54 +1,97 @@
 package com.rabiiyouness.minesweeper.view.components;
 
+import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class PopupOverlay {
+
     private StackPane root;
-    private VBox popupCard;
+    private VBox popupWindow;
+
+    // UI Elements
+    private StackPane header;
+    private FontIcon closeIcon;
     private Label titleLabel;
     private Label messageLabel;
     private HBox buttonLayout;
 
     public PopupOverlay() {
-        // Build the empty shell once
+        // 1. The Root Full-Screen Dimming Overlay
         root = new StackPane();
-        root.getStyleClass().add("popup-overlay");
+        root.getStyleClass().add("popup-overlay"); // The dark background
 
-        popupCard = new VBox(20);
-        popupCard.getStyleClass().add("popup-window");
+        // 2. The Popup Card Shell (using your exact VBox settings)
+        popupWindow = new VBox(20);
+        popupWindow.getStyleClass().add("popup-window");
+        popupWindow.setAlignment(Pos.CENTER);
 
+        popupWindow.setMaxHeight(Region.USE_PREF_SIZE);
+
+        // --- Assembling your specific layout elements ---
+
+        // Header with Close Icon
+        closeIcon = new FontIcon("ci-close");
+        closeIcon.getStyleClass().add("popup-close");
+        header = new StackPane(closeIcon);
+        StackPane.setAlignment(closeIcon, Pos.CENTER_RIGHT);
+
+        // Bonus: Make the close icon actually close the popup automatically!
+        closeIcon.setOnMouseClicked(e -> this.hide());
+
+        // Title Label
         titleLabel = new Label();
-        messageLabel = new Label();
-        buttonLayout = new HBox(15);
+        titleLabel.getStyleClass().add("popup-title");
+        titleLabel.setCache(true);
+        titleLabel.setCacheHint(CacheHint.QUALITY);
 
-        popupCard.getChildren().addAll(titleLabel, messageLabel, buttonLayout);
-        root.getChildren().add(popupCard);
+        // Message Label
+        messageLabel = new Label();
+        messageLabel.getStyleClass().add("popup-message");
+        messageLabel.setCache(true);
+        messageLabel.setCacheHint(CacheHint.QUALITY);
+
+        // Button Layout
+        buttonLayout = new HBox(15);
+        buttonLayout.setAlignment(Pos.CENTER);
+
+        // Add everything to the card in your exact order
+        popupWindow.getChildren().addAll(header, titleLabel, messageLabel, buttonLayout);
+
+        // Add the card to the overlay and hide it initially
+        root.getChildren().add(popupWindow);
         root.setVisible(false);
     }
 
-    // THE MAGIC METHOD
+    /**
+     * Reads the config blueprint and updates the UI instantly.
+     */
     public void show(PopupConfig config) {
-        // 1. Set the text
+        // 1. Update text
         titleLabel.setText(config.title());
         messageLabel.setText(config.message());
 
         // 2. Clear old buttons
         buttonLayout.getChildren().clear();
 
-        // 3. Generate new buttons strictly based on the blueprint
+        // 3. Generate buttons based on the Config
         for (PopupAction action : config.actions()) {
             Button btn = new Button(action.buttonText());
 
-            // Apply different CSS if it's the primary "highlighted" button
+            // Apply your specific CSS classes based on the boolean!
             if (action.isPrimary()) {
-                btn.getStyleClass().add("primary-button");
+                btn.getStyleClass().add("popup-button-primary");
+            } else {
+                btn.getStyleClass().add("popup-button-secondary");
             }
 
-            // Instantly wire the action AND tell the popup to close itself!
+            // Wire the action and make it auto-close the popup
             btn.setOnAction(e -> {
                 action.actionToRun().run();
                 this.hide();
@@ -60,6 +103,11 @@ public class PopupOverlay {
         root.setVisible(true);
     }
 
-    public void hide() { root.setVisible(false); }
-    public StackPane getComponent() { return root; }
+    public void hide() {
+        root.setVisible(false);
+    }
+
+    public StackPane getComponent() {
+        return root;
+    }
 }

@@ -71,12 +71,8 @@ public class GameView {
         gameTopBar.updateTimerPill(elapsedSeconds);
     }
 
-    public void handleWin() {
+    public void playConfetti() {
         confettiOverlay.play();
-        gameBoard.getComponent().getStyleClass().add("board-container-win");
-    }
-    public void handleLoss() {
-        gameBoard.getComponent().getStyleClass().add("board-container-loss");
     }
 
     public PopupOverlay getPopupOverlay() {

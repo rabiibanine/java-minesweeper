@@ -114,6 +114,7 @@ public class GameController {
                 controller::navigateHome
         );
         gameView.getPopupOverlay().show(winConfig);
+        gameView.playConfetti();
     }
 
     private void handleLoss() {
