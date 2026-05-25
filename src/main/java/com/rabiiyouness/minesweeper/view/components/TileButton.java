@@ -45,7 +45,7 @@ public class TileButton {
         root.getStyleClass().setAll("tile", "tile-revealed");
         if (adjacentMinesCount > 0) {
             numberLabel.setText(String.valueOf(adjacentMinesCount));
-            numberLabel.getStyleClass().add("tile-" + adjacentMinesCount);
+            numberLabel.getStyleClass().setAll("tile-number", "tile-" + adjacentMinesCount);
             numberLabel.setVisible(true);
         } else {
             numberLabel.setVisible(false);
