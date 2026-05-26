@@ -78,6 +78,11 @@
     -fx-icon-size: 36px;
 }
 
+.topbar-face-icon {
+    -fx-icon-color: #e4a068;
+    -fx-icon-size: 36px;
+}
+
 /* ══════════════════════════════
    BOARD CONTAINER
 ══════════════════════════════ */

@@ -10,28 +10,44 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class GameTopBar {
 
-    private HBox root;
+    private StackPane root;
     private TopBarPill flagPill;
     private TopBarPill timerPill;
-    private Button resetButton;
     private Button homeButton;
+    private Button faceButton;
 
     public GameTopBar() {
-        this.root = new HBox();
-        root.setAlignment(Pos.CENTER_LEFT);
+        this.root = new StackPane();
+        root.getStyleClass().add("topbar");
 
+        // 1. Build the Left and Right sides
         HBox leftSide = buildLeftSide();
         HBox rightSide = buildRightSide();
 
+        // 2. Create the HBox layer with the spacer
+        HBox backgroundHBox = new HBox();
+        backgroundHBox.setAlignment(Pos.CENTER_LEFT);
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
+        backgroundHBox.getChildren().addAll(leftSide, spacer, rightSide);
 
-        root.getStyleClass().add("topbar");
-        root.getChildren().addAll(leftSide, spacer, rightSide);
+        // 3. Build the Center Face Button
+        faceButton = new Button();
+        // Set your default smile icon here (replace "ci-smile" with your pack's icon)
+        FontIcon faceIcon = new FontIcon("ci-face-satisfied-filled");
+        faceIcon.getStyleClass().add("topbar-face-icon");
+        faceButton.setGraphic(faceIcon);
+        faceButton.getStyleClass().add("topbar-icon-button");
+
+        // 4. Layer them in the StackPane!
+        // The StackPane will perfectly center the faceButton over the empty spacer
+        root.getChildren().addAll(backgroundHBox, faceButton);
+        StackPane.setAlignment(faceButton, Pos.CENTER);
     }
 
     public Parent getComponent() {
@@ -64,13 +80,6 @@ public class GameTopBar {
         timerPill = new TopBarPill("ci-timer");
         flagPill = new TopBarPill("ci-flag-filled");
 
-        resetButton = new Button();
-        FontIcon resetIcon = new FontIcon("ci-restart");
-        resetIcon.setCache(true);
-        resetIcon.getStyleClass().add("topbar-icon-button-icon");
-        resetButton.setGraphic(resetIcon);
-        resetButton.getStyleClass().add("topbar-icon-button");
-
         homeButton = new Button();
         FontIcon homeIcon = new FontIcon("ci-home");
         homeIcon.setCache(true);
@@ -78,7 +87,7 @@ public class GameTopBar {
         homeButton.setGraphic(homeIcon);
         homeButton.getStyleClass().add("topbar-icon-button");
 
-        rightSide.getChildren().addAll(flagPill.getComponent(), timerPill.getComponent(), resetButton, homeButton);
+        rightSide.getChildren().addAll(flagPill.getComponent(), timerPill.getComponent(), homeButton);
         return rightSide;
     }
 
@@ -86,8 +95,12 @@ public class GameTopBar {
         return homeButton;
     }
 
-    public Button getResetButton() {
-        return resetButton;
+    public Button getFaceButton() { return faceButton; }
+
+    public void setFace(String s) {
+        FontIcon icon = new FontIcon(s);
+        icon.getStyleClass().add("topbar-face-icon");
+        faceButton.setGraphic(icon);
     }
 
     public void updateFlagPill(int remainingMines) {

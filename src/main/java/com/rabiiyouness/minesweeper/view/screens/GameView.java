@@ -44,8 +44,8 @@ public class GameView {
         return gameTopBar.getHomeButton();
     }
 
-    public Button getResetButton() {
-        return gameTopBar.getResetButton();
+    public Button getFaceButton() {
+        return gameTopBar.getFaceButton();
     }
 
     public TileButton[][] getTileButtons() {
@@ -61,6 +61,7 @@ public class GameView {
         gameBoard.getComponent().getStyleClass().setAll("board-container");
         gameTopBar.updateTimerPill(0);
         gameTopBar.updateFlagPill(remainingMines);
+        setSmileyFace();
     }
 
     public void updateFlagPill(int remainingMines) {
@@ -81,5 +82,25 @@ public class GameView {
 
     public void hidePopup() {
         popupOverlay.hide();
+    }
+
+    public void setSmileyFace() {
+        gameTopBar.setFace("ci-face-satisfied-filled");
+    }
+
+    public void setNeutralFace() {
+        gameTopBar.setFace("ci-face-neutral-filled");
+    }
+
+    public void setDizzyFace() {
+        gameTopBar.setFace("ci-face-dizzy-filled");
+    }
+
+    public void setWinkFace() {
+        gameTopBar.setFace("ci-face-wink-filled");
+    }
+
+    public void setCoolFace() {
+        gameTopBar.setFace("ci-face-cool");
     }
 }

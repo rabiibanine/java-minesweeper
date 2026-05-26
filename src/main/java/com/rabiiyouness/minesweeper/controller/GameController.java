@@ -58,7 +58,7 @@ public class GameController {
 
     public void bindEvents() {
         // Reset Button
-        gameView.getResetButton().setOnAction(event -> handleReset());
+        gameView.getFaceButton().setOnAction(event -> handleReset());
 
         // Home Button
         gameView.getHomeButton().setOnAction(event -> handleHome());
@@ -100,7 +100,6 @@ public class GameController {
                 controller.navigateHome();
                 board.initializeGame(difficulty);
                 gameView.resetGame(board.getRemainingMines());
-
             });
             gameView.getPopupOverlay().show(confirmConfig);
             return;
@@ -113,6 +112,7 @@ public class GameController {
         for (Tile tile : changed) {
             updateTileView(tile);
         }
+        gameView.setNeutralFace();
         if (board.getGameState() == GameState.WON) handleWin();
         if (board.getGameState() == GameState.LOST) handleLoss();
     }
@@ -127,6 +127,7 @@ public class GameController {
         );
         gameView.getPopupOverlay().show(winConfig);
         gameView.playConfetti();
+        gameView.setCoolFace();
     }
 
     private void handleLoss() {
@@ -136,13 +137,14 @@ public class GameController {
                 controller::navigateHome
         );
         gameView.getPopupOverlay().show(lossConfig);
-
+        gameView.setDizzyFace();
     }
 
     public void handleFlag(Position pos) {
         Tile tile = board.getTileAt(pos);
         board.toggleFlag(pos);
         gameView.updateFlagPill(board.getRemainingMines());
+        gameView.setWinkFace();
         updateTileView(tile);
     }
 
