@@ -94,6 +94,7 @@ public class GameController {
             gameView.getPopupOverlay().show(resetConfig);
             return;
         };
+
     }
 
     private void handleHome() {
@@ -156,7 +157,7 @@ public class GameController {
     private void handleLoss() {
 
         PopupConfig lossConfig = PopupFactory.createLoseConfig(
-                this::handleReset,
+                this::restart,
                 controller::navigateHome
         );
         gameView.getPopupOverlay().show(lossConfig);
