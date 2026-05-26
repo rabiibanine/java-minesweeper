@@ -20,7 +20,7 @@ public class HorizontalMenuButtons {
 
         root.getStyleClass().add("menu-bottom-bar");
 
-        String[] buttonsLabels = {"PLAY", "LEADERBOARD", "OPTIONS", "CREDITS", "EXIT"};
+        String[] buttonsLabels = {"PLAY", "LEADERBOARD", "CREDITS", "EXIT"};
 
         for (String s: buttonsLabels) {
             Button button = new Button(s);
