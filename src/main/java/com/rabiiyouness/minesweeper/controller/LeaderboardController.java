@@ -14,13 +14,13 @@ import java.util.List;
 public class LeaderboardController {
 
     private final LeaderboardView leaderboardView;
-    private final ScoreDao scoreDao;
+//    private final ScoreDao scoreDao;
     private final MainController mainController;
-    private final Connection connection;
+//    private final Connection connection;
 
     public LeaderboardController(MainController mainController) {
-        this.connection = getConnection();
-        this.scoreDao = new ScoreDao(connection);
+//        this.connection = getConnection();
+//        this.scoreDao = new ScoreDao(connection);
         this.mainController = mainController;
         this.leaderboardView = new LeaderboardView();
 
@@ -29,8 +29,8 @@ public class LeaderboardController {
 
     private void loadScores() {
         for (Difficulty difficulty : Difficulty.values()) {
-            List<Score> scores = scoreDao.findTop10(difficulty);
-            leaderboardView.populateTable(difficulty, scores);
+//            List<Score> scores = scoreDao.findTop10(difficulty);
+//            leaderboardView.populateTable(difficulty, scores);
         }
     }
 
