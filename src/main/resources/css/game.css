@@ -325,7 +325,7 @@
     -fx-font-family: Inter "Courier New", monospace;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-padding: 10 28 10 28;
+    -fx-padding: 10 16 10 16;
     -fx-background-radius: 4px;
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.4), 10, 0, 0, 0);
@@ -348,7 +348,7 @@
     -fx-font-family: Inter, "Courier New", monospace;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-padding: 10 28 10 28;
+    -fx-padding: 10 16 10 16;
     -fx-background-radius: 4px;
     -fx-border-color: #c87020;
     -fx-border-width: 1px;

@@ -63,10 +63,6 @@ public class GameView {
         return gameBoard.getTileButton(pos);
     }
 
-    public void resetGame() {
-
-    }
-
     public void changeDifficulty(Difficulty difficulty) {
         this.rows = difficulty.getRows();
         this.cols = difficulty.getColumns();

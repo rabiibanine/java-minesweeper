@@ -120,6 +120,7 @@ public class GameController {
     private void restart() {
         board.initializeGame(difficulty);
         gameView.changeDifficulty(difficulty);
+        bindGridEvents();
     }
 
     private void changeDifficultyAndRestart(Difficulty newDifficulty) {
