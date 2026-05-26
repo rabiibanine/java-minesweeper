@@ -1,10 +1,10 @@
 package com.rabiiyouness.minesweeper.view.screens;
 
 import com.rabiiyouness.minesweeper.model.Position;
+import com.rabiiyouness.minesweeper.model.enums.Difficulty;
 import com.rabiiyouness.minesweeper.view.components.*;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
@@ -15,8 +15,15 @@ public class GameView {
     private final GameBoard gameBoard;
     private final ConfettiOverlay confettiOverlay;
     private final PopupOverlay popupOverlay;
+    private int rows;
+    private int cols;
+    private int mines;
 
-    public GameView(int rows, int cols) {
+    public GameView(Difficulty difficulty) {
+        rows = difficulty.getRows();
+        cols = difficulty.getColumns();
+        mines = difficulty.getMines();
+
         gameTopBar = new GameTopBar();
         gameBoard = new GameBoard(rows, cols);
         confettiOverlay = new ConfettiOverlay();
@@ -56,11 +63,20 @@ public class GameView {
         return gameBoard.getTileButton(pos);
     }
 
-    public void resetGame(int remainingMines) {
-        gameBoard.resetGameBoard();
+    public void resetGame() {
+
+    }
+
+    public void changeDifficulty(Difficulty difficulty) {
+        this.rows = difficulty.getRows();
+        this.cols = difficulty.getColumns();
+        this.mines = difficulty.getMines();
+
+        gameBoard.rebuildBoard(rows, cols);
         gameBoard.getComponent().getStyleClass().setAll("board-container");
+
+        gameTopBar.updateFlagPill(mines);
         gameTopBar.updateTimerPill(0);
-        gameTopBar.updateFlagPill(remainingMines);
         setSmileyFace();
     }
 
@@ -102,5 +118,9 @@ public class GameView {
 
     public void setCoolFace() {
         gameTopBar.setFace("ci-face-cool");
+    }
+
+    public Button getSettingsButton() {
+        return gameTopBar.getSettingsButton();
     }
 }

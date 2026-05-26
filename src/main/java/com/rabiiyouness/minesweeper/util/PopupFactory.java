@@ -53,4 +53,22 @@ public class PopupFactory {
                 )
         );
     }
+
+    public static PopupConfig createSettingsConfig(
+            Runnable onExpert,
+            Runnable onIntermediate,
+            Runnable onBeginner
+    ) {
+        return new PopupConfig(
+                "Change Difficulty",
+                "Warning: This will restart your current game",
+                List.of(
+                        new PopupAction("Expert", onExpert, false),
+                        new PopupAction("Intermediate", onIntermediate, false),
+                        new PopupAction("Beginner", onBeginner, false),
+                        new PopupAction("Cancel", () -> {}, true)
+                )
+
+        );
+    }
 }

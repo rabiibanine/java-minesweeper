@@ -16,10 +16,21 @@ public class GameBoard {
     private int cols;
 
     public GameBoard(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
         grid = new GridPane();
         grid.getStyleClass().add("board-grid");
+
+        root = new StackPane();
+        root.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        root.getChildren().add(grid);
+
+        rebuildBoard(rows, cols);
+    }
+
+    public void rebuildBoard(int newRows, int newCols) {
+        int rows = newRows;
+        int cols = newCols;
+
+        grid.getChildren().clear();
 
         tileButtons = new TileButton[rows][cols];
 
@@ -29,10 +40,6 @@ public class GameBoard {
                 grid.add(tileButtons[i][j].getComponent(), j, i);
             }
         }
-
-        root = new StackPane();
-        root.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-        root.getChildren().add(grid);
     }
 
     public TileButton[][] getTileButtons() {
@@ -47,11 +54,4 @@ public class GameBoard {
         return root;
     }
 
-    public void resetGameBoard() {
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                tileButtons[row][col].setHidden();
-            }
-        }
-    }
 }

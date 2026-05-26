@@ -259,9 +259,6 @@
     -fx-background-color: #1e1208;
 }
 
-/* ══════════════════════════
-   POPUP WINDOW
-══════════════════════════ */
 
 /* ══════════════════════════════
    POPUP OVERLAY
@@ -271,6 +268,10 @@
 .popup-overlay {
     -fx-background-color: rgb(0, 0, 0, 0.2);
 }
+
+/* ══════════════════════════
+   POPUP WINDOW
+══════════════════════════ */
 
 /* The popup card itself */
 .popup-window {

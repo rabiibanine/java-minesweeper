@@ -37,7 +37,7 @@ public class GameController {
         board.initializeGame(difficulty);
 
         this.controller = controller;
-        gameView = new GameView(board.getRows(), board.getCols());
+        gameView = new GameView(difficulty);
 
         // Initialize pills
         gameView.updateFlagPill(board.getRemainingMines());
@@ -45,7 +45,8 @@ public class GameController {
         // Start timer
         startTimer();
 
-        bindEvents();
+        bindStaticEvents();
+        bindGridEvents();
     }
 
     public GameView getView(){
@@ -56,55 +57,76 @@ public class GameController {
         return gameView.getRoot();
     }
 
-    public void bindEvents() {
+    public void bindStaticEvents() {
         // Reset Button
         gameView.getFaceButton().setOnAction(event -> handleReset());
 
         // Home Button
         gameView.getHomeButton().setOnAction(event -> handleHome());
 
+        // Settings Button
+        gameView.getSettingsButton().setOnAction(event -> handleSettings());
+    }
+
+    public void bindGridEvents() {
+        TileButton[][] tileButtons = gameView.getTileButtons();
+
         // Board Tiles
-        for (int row = 0; row < board.getRows() ; row++) {
-            for (int col = 0; col < board.getCols() ; col++) {
+        for (int row = 0; row < tileButtons.length ; row++) {
+            for (int col = 0; col < tileButtons[row].length ; col++) {
                 Position pos = new Position(row, col);
-                TileButton tileButton = gameView.getTileButton(pos);
+                TileButton tileButton = tileButtons[row][col];
 
                 tileButton.getComponent().setOnMouseClicked(event -> {
-                        if (event.getButton() == MouseButton.PRIMARY) {
-                            handleReveal(pos);
-                        } else if (event.getButton() == MouseButton.SECONDARY) {
-                            handleFlag(pos);
-                        }
+                    if (event.getButton() == MouseButton.PRIMARY) {
+                        handleReveal(pos);
+                    } else if (event.getButton() == MouseButton.SECONDARY) {
+                        handleFlag(pos);
+                    }
                 });
             }
         }
-
     }
 
      public void handleReset() {
         if (board.getGameState() == GameState.RUNNING) {
-            PopupConfig resetConfig = PopupFactory.createResetConfig(() -> {
-                board.initializeGame(difficulty);
-                gameView.resetGame(board.getRemainingMines());
-            });
+            PopupConfig resetConfig = PopupFactory.createResetConfig(this::restart);
             gameView.getPopupOverlay().show(resetConfig);
             return;
         };
-        board.initializeGame(difficulty);
-        gameView.resetGame(board.getRemainingMines());
     }
 
     private void handleHome() {
         if (board.getGameState() == GameState.RUNNING) {
             PopupConfig confirmConfig = PopupFactory.createConfirmConfig(() -> {
                 controller.navigateHome();
-                board.initializeGame(difficulty);
-                gameView.resetGame(board.getRemainingMines());
+                restart();
             });
             gameView.getPopupOverlay().show(confirmConfig);
             return;
         };
         controller.navigateHome();
+    }
+
+    private void handleSettings() {
+    PopupConfig settingsConfig = PopupFactory.createSettingsConfig(
+            () -> changeDifficultyAndRestart(Difficulty.EXPERT),
+            () -> changeDifficultyAndRestart(Difficulty.INTERMEDIATE),
+            () -> changeDifficultyAndRestart(Difficulty.BEGINNER)
+    );
+        gameView.getPopupOverlay().show(settingsConfig);
+    }
+
+    private void restart() {
+        board.initializeGame(difficulty);
+        gameView.changeDifficulty(difficulty);
+    }
+
+    private void changeDifficultyAndRestart(Difficulty newDifficulty) {
+        this.difficulty = newDifficulty;
+        board.initializeGame(this.difficulty);
+        gameView.changeDifficulty(this.difficulty);
+        bindGridEvents();
     }
 
     public void handleReveal(Position pos) {
