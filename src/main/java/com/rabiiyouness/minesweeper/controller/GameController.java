@@ -96,7 +96,12 @@ public class GameController {
 
     private void handleHome() {
         if (board.getGameState() == GameState.RUNNING) {
-            PopupConfig confirmConfig = PopupFactory.createConfirmConfig(controller::navigateHome);
+            PopupConfig confirmConfig = PopupFactory.createConfirmConfig(() -> {
+                controller.navigateHome();
+                board.initializeGame(difficulty);
+                gameView.resetGame(board.getRemainingMines());
+
+            });
             gameView.getPopupOverlay().show(confirmConfig);
             return;
         };
