@@ -36,11 +36,18 @@ public class PopupOverlay {
 
         // --- Assembling your specific layout elements ---
 
-        // Header with Close Icon
+        // Header with Close Button
         closeIcon = new FontIcon("ci-close");
-        closeIcon.getStyleClass().add("popup-close");
-        header = new StackPane(closeIcon);
-        StackPane.setAlignment(closeIcon, Pos.CENTER_RIGHT);
+        closeIcon.getStyleClass().add("popup-close-icon");
+        closeIcon.setCache(true);
+        closeIcon.setCacheHint(CacheHint.SPEED);
+
+        Button closeButton = new Button();
+        closeButton.getStyleClass().add("popup-close-button");
+        closeButton.setGraphic(closeIcon);
+
+        header = new StackPane(closeButton);
+        StackPane.setAlignment(closeButton, Pos.CENTER_RIGHT);
 
         // Bonus: Make the close icon actually close the popup automatically!
         closeIcon.setOnMouseClicked(e -> this.hide());

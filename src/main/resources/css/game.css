@@ -221,44 +221,6 @@
     -fx-cursor: default;
 }
 
-/* ══════════════════════════════
-   ABORT MISSION BUTTON
-══════════════════════════════ */
-
-.abort-button {
-    -fx-background-color: #c87020;
-    -fx-text-fill: #1e1208;
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-letter-spacing: 1.5px;
-    -fx-padding: 12 32 12 32;
-    -fx-background-radius: 4px;
-    -fx-border-radius: 4px;
-    -fx-cursor: hand;
-}
-
-.abort-button:hover {
-    -fx-background-color: #e09030;
-}
-
-.abort-button:pressed {
-    -fx-background-color: #a06010;
-}
-
-.abort-button-icon {
-    -fx-background-color: #1e1208;
-    -fx-min-width: 14px;
-    -fx-min-height: 14px;
-}
-
-/* Bottom area wrapping the abort button */
-.bottom-bar {
-    -fx-alignment: CENTER;
-    -fx-padding: 24 0 24 0;
-    -fx-background-color: #1e1208;
-}
-
 
 /* ══════════════════════════════
    POPUP OVERLAY
@@ -305,13 +267,17 @@
     -fx-text-alignment: CENTER;
 }
 
-.popup-close {
+.popup-close-icon {
     -fx-icon-size: 36px;
     -fx-icon-color: #c87020;
-    -fx-padding: 4;
 }
 
-.popup-close:hover {
+.popup-close-button {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.popup-close-button:hover {
     -fx-background-color: #4b3718;
     -fx-background-radius: 4px;
     -fx-border-radius: 4px;
