@@ -18,36 +18,26 @@ public class GameTopBar {
     private StackPane root;
     private TopBarPill flagPill;
     private TopBarPill timerPill;
-    private Button homeButton;
     private Button faceButton;
+    private Button homeButton;
+    private Button settingsButton;
 
     public GameTopBar() {
         this.root = new StackPane();
         root.getStyleClass().add("topbar");
 
-        // 1. Build the Left and Right sides
         HBox leftSide = buildLeftSide();
         HBox rightSide = buildRightSide();
+        HBox middle = buildMiddle();
 
-        // 2. Create the HBox layer with the spacer
         HBox backgroundHBox = new HBox();
         backgroundHBox.setAlignment(Pos.CENTER_LEFT);
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         backgroundHBox.getChildren().addAll(leftSide, spacer, rightSide);
 
-        // 3. Build the Center Face Button
-        faceButton = new Button();
-        // Set your default smile icon here (replace "ci-smile" with your pack's icon)
-        FontIcon faceIcon = new FontIcon("ci-face-satisfied-filled");
-        faceIcon.getStyleClass().add("topbar-face-icon");
-        faceButton.setGraphic(faceIcon);
-        faceButton.getStyleClass().add("topbar-icon-button");
-
-        // 4. Layer them in the StackPane!
-        // The StackPane will perfectly center the faceButton over the empty spacer
-        root.getChildren().addAll(backgroundHBox, faceButton);
-        StackPane.setAlignment(faceButton, Pos.CENTER);
+        root.getChildren().addAll(backgroundHBox, middle);
+        StackPane.setAlignment(middle, Pos.CENTER);
     }
 
     public Parent getComponent() {
@@ -77,9 +67,6 @@ public class GameTopBar {
         HBox rightSide = new HBox();
         rightSide.getStyleClass().add("topbar-right");
 
-        timerPill = new TopBarPill("ci-timer");
-        flagPill = new TopBarPill("ci-flag-filled");
-
         homeButton = new Button();
         FontIcon homeIcon = new FontIcon("ci-home");
         homeIcon.setCache(true);
@@ -87,12 +74,40 @@ public class GameTopBar {
         homeButton.setGraphic(homeIcon);
         homeButton.getStyleClass().add("topbar-icon-button");
 
-        rightSide.getChildren().addAll(flagPill.getComponent(), timerPill.getComponent(), homeButton);
+        settingsButton = new Button();
+        FontIcon settingsIcon = new FontIcon("ci-settings");
+        settingsIcon.setCache(true);
+        settingsIcon.getStyleClass().add("topbar-icon-button-icon");
+        settingsButton.setGraphic(settingsIcon);
+        settingsButton.getStyleClass().add("topbar-icon-button");
+
+        rightSide.getChildren().addAll(homeButton, settingsButton);
         return rightSide;
+    }
+
+    public HBox buildMiddle() {
+        HBox middle = new HBox(8);
+
+        timerPill = new TopBarPill("ci-timer");
+        flagPill = new TopBarPill("ci-flag-filled");
+
+        faceButton = new Button();
+        FontIcon faceIcon = new FontIcon("ci-face-satisfied-filled");
+        faceIcon.getStyleClass().add("topbar-face-icon");
+        faceButton.setGraphic(faceIcon);
+        faceButton.getStyleClass().add("topbar-icon-button");
+
+        middle.getChildren().addAll(flagPill.getComponent(), faceButton, timerPill.getComponent());
+        middle.setMaxWidth(Region.USE_PREF_SIZE);
+        return middle;
     }
 
     public Button getHomeButton() {
         return homeButton;
+    }
+
+    public Button getSettingsButton() {
+        return settingsButton;
     }
 
     public Button getFaceButton() { return faceButton; }
