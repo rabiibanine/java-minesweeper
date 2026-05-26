@@ -1,0 +1,357 @@
+
+/* ══════════════════════════════
+   topbar
+══════════════════════════════ */
+
+.topbar {
+    -fx-background-color: #1e1208;
+    -fx-border-color: #f4b078;
+    -fx-border-width: 0 0 0.5 0;
+    -fx-padding: 8 16 8 16;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12;
+}
+
+/* App logo / title */
+.topbar-logo-label {
+    -fx-font-family: Inter;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+    -fx-letter-spacing: 2px;
+}
+
+.topbar-logo-icon {
+    -fx-icon-color: #f4b078;
+    -fx-icon-size: 36px
+}
+
+.topbar-right {
+    -fx-spacing: 8;
+}
+
+.topbar-left {
+
+}
+
+/* Spacer to push right-side controls to the right */
+.topbar-spacer {
+    -fx-hgrow: ALWAYS;
+}
+
+/* Right-side pill containers (mine count, timer) */
+.topbar-pill {
+    -fx-background-color: rgba(244, 176, 120, 0.2);
+    -fx-background-radius: 100px;
+    -fx-padding: 4 14 4 14;
+    -fx-spacing: 8;
+    -fx-alignment: CENTER;
+}
+
+.topbar-pill-icon {
+    -fx-icon-color: #f4b078;
+    -fx-icon-size: 24px;
+}
+
+.topbar-pill-label {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+}
+
+/* Icon-only topbar buttons (restart, settings) */
+.topbar-icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.topbar-icon-button:hover {
+    -fx-background-color: rgba(244, 176, 120, 0.2);
+    -fx-background-radius: 12px;
+}
+
+.topbar-icon-button-icon {
+    -fx-icon-color: #e4a068;
+    -fx-icon-size: 36px;
+}
+
+.topbar-face-icon {
+    -fx-icon-color: #e4a068;
+    -fx-icon-size: 36px;
+}
+
+/* ══════════════════════════════
+   BOARD CONTAINER
+══════════════════════════════ */
+
+.board-container-win {
+    -fx-background-color: #053403;
+}
+
+.board-container-loss {
+    -fx-background-color: #360202E3;
+}
+
+.board-grid {
+    -fx-background-color: rgb(57, 29, 5, 0.25);
+    -fx-border-color: rgba(232, 196, 150, 0.50);
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 16;
+    -fx-hgap: 2;
+    -fx-vgap: 2;
+}
+
+.board-icon {
+    -fx-icon-color: #c87020;
+    -fx-icon-size: 18px;
+}
+
+
+/* ══════════════════════════════
+   TILES
+══════════════════════════════ */
+
+/* --- DEFAULT TILE SIZE --- */
+.tile {
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+}
+
+/* --- HIDDEN (default state) --- */
+.tile-hidden {
+    -fx-background-color: linear-gradient(to bottom, #6b4c25, #4a3318);
+    -fx-border-color: #7a5828;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+
+    -fx-cursor: hand;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.5), 4, 0, 0, 2);
+}
+
+.tile-hidden:hover {
+    -fx-background-color: linear-gradient(to bottom, #8a6030, #5e4020);
+    -fx-border-color: #c87020;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.5), 8, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+/* --- REVEALED --- */
+.tile-revealed {
+    -fx-background-color: linear-gradient(to bottom, #161218, #1c1409);
+    -fx-border-color: #4a3313;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: default;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.8), 6, 0, 0, 3);
+}
+
+/* This is the fix — explicitly kill the .tile:hover when revealed */
+.tile-revealed:hover {
+    -fx-background-color: linear-gradient(to bottom, #141008, #1a1208);
+    -fx-border-color: #2a1e0a;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.8), 6, 0, 0, 3);
+    -fx-cursor: default;
+}
+
+/* --- FLAGGED --- */
+.tile-flagged {
+    -fx-background-color: linear-gradient(to bottom, #6b4c25, #4a3318);
+    -fx-border-color: #c87020;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.4), 6, 0, 0, 0);
+}
+
+.tile-flagged:hover {
+    -fx-background-color: linear-gradient(to bottom, #7a5830, #563c1e);
+    -fx-border-color: #e09030;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.7), 10, 0, 0, 0);
+}
+
+/* ── Number colors ── */
+.tile-number {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.tile-1 { -fx-text-fill: #ffffff; }
+.tile-2 { -fx-text-fill: #00bfff; }
+.tile-3 { -fx-text-fill: #c87020; }
+.tile-4 { -fx-text-fill: #9b59b6; }
+.tile-5 { -fx-text-fill: #e74c3c; }
+.tile-6 { -fx-text-fill: #1abc9c; }
+.tile-7 { -fx-text-fill: #f1c40f; }
+.tile-8 { -fx-text-fill: #95a5a6; }
+
+/* Flag icon on tile */
+.tile-flag-icon {
+    -fx-background-color: #c87020;
+    -fx-min-width: 14px;
+    -fx-min-height: 14px;
+}
+
+/* Mine revealed (game over) */
+.tile-mine {
+    -fx-background-color: #8B0000BF;
+    -fx-border-color: #5A0000CC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: default;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.8), 6, 0, 0, 3);
+}
+
+.tile-mine:hover {
+    -fx-background-color: #7B0000BF;
+    -fx-border-color: #2a1e0a;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.6), 6, 0, 0, 3);
+    -fx-cursor: default;
+}
+
+
+/* ══════════════════════════════
+   POPUP OVERLAY
+══════════════════════════════ */
+
+/* The full-screen dimming layer */
+.popup-overlay {
+    -fx-background-color: rgb(0, 0, 0, 0.2);
+}
+
+/* ══════════════════════════
+   POPUP WINDOW
+══════════════════════════ */
+
+/* The popup card itself */
+.popup-window {
+    -fx-background-color: #2a1e0a;
+    -fx-border-color: #c87020;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 20 20 40 20;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.5), 32, 0, 0, 0);
+    -fx-pref-width: 400px;  /* Try to be this wide */
+    -fx-max-width: 500px;   /* Never get wider than this (prevents stretching on 4K monitors) */
+    -fx-min-width: 250px;
+}
+
+/* Title inside popup */
+.popup-title {
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c87020;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.6), 10, 0, 0, 0);
+}
+
+/* Subtitle / message */
+.popup-message {
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 18px;
+    -fx-text-fill: #a08060;
+    -fx-wrap-text: true;
+    -fx-text-alignment: CENTER;
+}
+
+.popup-close-icon {
+    -fx-icon-size: 36px;
+    -fx-icon-color: #c87020;
+}
+
+.popup-close-button {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.popup-close-button:hover {
+    -fx-background-color: #4b3718;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+/* Primary action button (confirm, play again) */
+.popup-button-primary {
+    -fx-background-color: #c87020;
+    -fx-text-fill: #1e1208;
+    -fx-font-family: Inter "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.4), 10, 0, 0, 0);
+}
+
+.popup-button-primary:hover {
+    -fx-background-color: #e09030;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.7), 14, 0, 0, 0);
+}
+
+.popup-button-primary:pressed {
+    -fx-background-color: #a06010;
+    -fx-effect: none;
+}
+
+/* Secondary action button (cancel, go back) */
+.popup-button-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c87020;
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 4px;
+    -fx-border-color: #c87020;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.popup-button-secondary:hover {
+    -fx-background-color: #2a1e0a;
+    -fx-border-color: #e09030;
+    -fx-text-fill: #e09030;
+    -fx-effect: dropshadow(gaussian, rgba(200, 112, 32, 0.3), 8, 0, 0, 0);
+}
+
+.popup-button-secondary:pressed {
+    -fx-background-color: #1e1208;
+}
+
+/* Win variant — green tint */
+.popup-window-win {
+    -fx-border-color: #1abc9c;
+    -fx-effect: dropshadow(gaussian, rgba(26, 188, 156, 0.5), 32, 0, 0, 0);
+}
+
+.popup-title-win {
+    -fx-text-fill: #1abc9c;
+    -fx-effect: dropshadow(gaussian, rgba(26, 188, 156, 0.6), 10, 0, 0, 0);
+}
+
+/* Lose variant — red tint */
+.popup-window-lose {
+    -fx-border-color: #e74c3c;
+    -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.5), 32, 0, 0, 0);
+}
+
+.popup-title-lose {
+    -fx-text-fill: #e74c3c;
+    -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.6), 10, 0, 0, 0);
+}
+

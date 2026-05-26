@@ -25,14 +25,32 @@ public class MenuController {
 
     public void bindEvents() {
         // Play event
-        menuView.getPlayButton().setOnAction(event -> controller.handlePlayButton());
+        menuView.getPlayButton().setOnAction(event -> handlePlayButton());
         // Leaderboard event
-        menuView.getLeaderboardButton().setOnAction(event -> controller.handleLeaderboardButton());
-        // Options event
-        menuView.getOptionsButton().setOnAction(event -> controller.handleOptionsButton());
+        menuView.getLeaderboardButton().setOnAction(event -> handleLeaderboardButton());
         // Credits event
-        menuView.getCreditsButton().setOnAction(event -> controller.handleCreditsButton());
+        menuView.getCreditsButton().setOnAction(event -> handleCreditsButton());
         // Exit event
-        menuView.getExitButton().setOnAction(event -> Platform.exit());
+        menuView.getExitButton().setOnAction(event -> handleExitButton());
+    }
+
+    private void handlePlayButton() {
+        controller.navigateGame();
+    }
+
+    private void handleLeaderboardButton() {
+        controller.navigateLeaderboard();
+    }
+
+    private void handleOptionsButton() {
+        controller.navigateOptions();
+    }
+
+    private void handleCreditsButton() {
+        controller.navigateCredits();
+    }
+
+    private void handleExitButton() {
+        Platform.exit();
     }
 }

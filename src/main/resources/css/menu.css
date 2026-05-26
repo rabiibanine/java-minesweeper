@@ -5,9 +5,14 @@
     -fx-background-color: linear-gradient(to top, #111111, transparent); /* A cool fade effect at the bottom of the screen */
 }
 
-.menu-logo {
+.menu-logo-label {
     -fx-text-fill: #FF8C00;
     -fx-font: bold 48px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.menu-logo-icon {
+    -fx-icon-color: #FF8C00;
+    -fx-icon-size: 64px;
 }
 
 /* Base button style — applied to all 5 nav buttons */
@@ -19,7 +24,7 @@
     -fx-background-radius: 3px;
     -fx-text-fill: #E8940A;
     -fx-font-family: "Inter";
-    -fx-font-size: 12px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-letter-spacing: 1.5px;
     -fx-padding: 14px 24px;

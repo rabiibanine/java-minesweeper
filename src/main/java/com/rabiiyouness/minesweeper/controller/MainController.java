@@ -1,5 +1,7 @@
 package com.rabiiyouness.minesweeper.controller;
 
+import com.rabiiyouness.minesweeper.model.enums.GameState;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -28,26 +30,38 @@ public class MainController {
         stage.setTitle("MINESWEEPER PLUS");
         stage.setScene(scene);
 
+
+        // TODO remove this (DEBUGGING ONLY)
+
+        gameController.attachDebugKeybinds(scene);
+
         stage.show();
     }
 
-    public void navigate(Parent newRoot) {
+    private void navigate(Parent newRoot) {
         stage.getScene().setRoot(newRoot);
     }
 
-    public void handlePlayButton() {
+    public void navigateHome() {
+        gameController.handleReset();
+        navigate(menuController.getRoot());
+    }
+
+    public void navigateGame() {
         navigate(gameController.getRoot());
     }
 
-    public void handleLeaderboardButton() {
+    public void navigateLeaderboard() {
         navigate(leaderboardController.getRoot());
     }
 
-    public void handleOptionsButton() {
+    public void navigateOptions() {
         navigate(optionsController.getRoot());
     }
 
-    public void handleCreditsButton() {
+    public void navigateCredits() {
         navigate(creditsController.getRoot());
     }
+
+
 }

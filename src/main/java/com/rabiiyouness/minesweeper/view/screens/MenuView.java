@@ -38,15 +38,11 @@ public class MenuView {
         return horizontalMenuButtons.getButtons().get(1);
     }
 
-    public Button getOptionsButton() {
+    public Button getCreditsButton() {
         return horizontalMenuButtons.getButtons().get(2);
     }
 
-    public Button getCreditsButton() {
-        return horizontalMenuButtons.getButtons().get(3);
-    }
-
     public Button getExitButton() {
-        return horizontalMenuButtons.getButtons().get(4);
+        return horizontalMenuButtons.getButtons().get(3);
     }
 }

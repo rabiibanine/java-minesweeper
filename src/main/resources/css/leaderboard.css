@@ -1,0 +1,172 @@
+/* ══════════════════════════════
+   LEADERBOARD — TOP BAR
+══════════════════════════════ */
+
+.leaderboard-topbar {
+    -fx-background-color: rgba(57, 29, 5, 0.6);
+    -fx-border-color: rgba(232, 196, 150, 0.3);
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 10 14 10 14;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 0;
+}
+
+.leaderboard-topbar-title {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+    -fx-alignment: CENTER;
+}
+
+/* Reuses .topbar-icon-button and .topbar-icon-button-icon from game.css */
+
+
+/* ══════════════════════════════
+   LEADERBOARD — TAB BAR
+══════════════════════════════ */
+
+.leaderboard-tab-bar {
+    -fx-background-color: rgba(57, 29, 5, 0.4);
+    -fx-border-color: rgba(232, 196, 150, 0.2);
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 5;
+    -fx-spacing: 6;
+    -fx-alignment: CENTER;
+}
+
+.leaderboard-tab {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a07040;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+
+.leaderboard-tab:hover {
+    -fx-text-fill: #f4b078;
+    -fx-background-color: rgba(244, 176, 120, 0.1);
+}
+
+.leaderboard-tab-active {
+    -fx-text-fill: #f4b078;
+    -fx-background-color: rgba(244, 176, 120, 0.2);
+    -fx-border-color: rgba(244, 176, 120, 0.4);
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+
+
+/* ══════════════════════════════
+   LEADERBOARD — TABLE CARD
+══════════════════════════════ */
+
+.leaderboard-table-card {
+    -fx-background-color: rgb(57, 29, 5, 0.25);
+    -fx-border-color: rgba(232, 196, 150, 0.5);
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+
+/* ══════════════════════════════
+   LEADERBOARD — TABLE HEADER ROW
+══════════════════════════════ */
+
+.leaderboard-table-header {
+    -fx-background-color: rgba(57, 29, 5, 0.5);
+    -fx-border-color: transparent transparent rgba(232, 196, 150, 0.3) transparent;
+    -fx-border-width: 0 0 0.5px 0;
+    -fx-padding: 10 16 10 16;
+}
+
+.leaderboard-header-label {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a07040;
+}
+
+
+/* ══════════════════════════════
+   LEADERBOARD — SCORE ROWS
+══════════════════════════════ */
+
+.leaderboard-row {
+    -fx-padding: 10 16 10 16;
+    -fx-border-color: transparent transparent rgba(232, 196, 150, 0.1) transparent;
+    -fx-border-width: 0 0 0.5px 0;
+    -fx-background-color: transparent;
+}
+
+.leaderboard-row:hover {
+    -fx-background-color: rgba(244, 176, 120, 0.07);
+}
+
+/* Last row — no bottom border */
+.leaderboard-row-last {
+    -fx-border-color: transparent;
+}
+
+
+/* ══════════════════════════════
+   LEADERBOARD — CELL LABELS
+══════════════════════════════ */
+
+.leaderboard-rank {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6b4c25;
+}
+
+/* Top 3 rank overrides — add these alongside .leaderboard-rank */
+.leaderboard-rank-gold {
+    -fx-text-fill: #f4d078;
+}
+
+.leaderboard-rank-silver {
+    -fx-text-fill: #c8c8d8;
+}
+
+.leaderboard-rank-bronze {
+    -fx-text-fill: #c87850;
+}
+
+.leaderboard-time {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+}
+
+.leaderboard-date {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 13px;
+    -fx-text-fill: #a07040;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+
+/* ══════════════════════════════
+   LEADERBOARD — EMPTY STATE
+══════════════════════════════ */
+
+.leaderboard-empty {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b4c25;
+    -fx-padding: 40 16 40 16;
+    -fx-alignment: CENTER;
+}

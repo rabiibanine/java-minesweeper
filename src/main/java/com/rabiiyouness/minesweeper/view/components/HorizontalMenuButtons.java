@@ -1,6 +1,7 @@
 package com.rabiiyouness.minesweeper.view.components;
 
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -12,25 +13,29 @@ public class HorizontalMenuButtons {
 
     private List<Button> buttons = new ArrayList<>();
 
-    public Pane getComponent() {
-        HBox horizontalMenuButtons = new HBox();
+    private HBox root;
 
-        horizontalMenuButtons.getStyleClass().add("menu-bottom-bar");
+    public HorizontalMenuButtons() {
+        this.root = new HBox();
 
-        String[] buttonsLabels = {"PLAY", "LEADERBOARD", "OPTIONS", "CREDITS", "EXIT"};
+        root.getStyleClass().add("menu-bottom-bar");
+
+        String[] buttonsLabels = {"PLAY", "LEADERBOARD", "CREDITS", "EXIT"};
 
         for (String s: buttonsLabels) {
             Button button = new Button(s);
             buttons.add(button);
-            horizontalMenuButtons.getChildren().add(button);
+            root.getChildren().add(button);
             if (s.equals("PLAY")) {
                 button.getStyleClass().add("nav-button-primary");
             } else {
                 button.getStyleClass().add("nav-button");
             }
         }
+    }
 
-        return horizontalMenuButtons;
+    public Parent getComponent() {
+        return root;
     }
 
     public List<Button> getButtons() {
