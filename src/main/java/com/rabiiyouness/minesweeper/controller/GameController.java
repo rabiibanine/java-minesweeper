@@ -1,7 +1,10 @@
 package com.rabiiyouness.minesweeper.controller;
 
+import com.rabiiyouness.minesweeper.dao.DbConnection;
+import com.rabiiyouness.minesweeper.dao.ScoreDao;
 import com.rabiiyouness.minesweeper.model.Board;
 import com.rabiiyouness.minesweeper.model.Position;
+import com.rabiiyouness.minesweeper.model.Score;
 import com.rabiiyouness.minesweeper.model.Tile;
 import com.rabiiyouness.minesweeper.model.enums.Difficulty;
 import com.rabiiyouness.minesweeper.model.enums.GameState;
@@ -18,6 +21,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.util.Duration;
 
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 
@@ -141,16 +147,21 @@ public class GameController {
         if (board.getGameState() == GameState.LOST) handleLoss();
     }
 
+    public void handleFlag(Position pos) {
+        Tile tile = board.getTileAt(pos);
+        board.toggleFlag(pos);
+        gameView.updateFlagPill(board.getRemainingMines());
+        gameView.setWinkFace();
+        updateTileView(tile);
+    }
+
     private void handleWin() {
         updateAllTilesView();
         String formattedTime = TimeFormatter.formatReadable(board.getElapsedSeconds());
         PopupConfig winConfig = PopupFactory.createWinConfig(
                 formattedTime,
                 this::restart,
-                () -> {
-                    restart();
-                    controller.navigateHome();
-                }
+                this::handleSave
         );
         gameView.getPopupOverlay().show(winConfig);
         gameView.playConfetti();
@@ -170,13 +181,22 @@ public class GameController {
         gameView.setDizzyFace();
     }
 
-    public void handleFlag(Position pos) {
-        Tile tile = board.getTileAt(pos);
-        board.toggleFlag(pos);
-        gameView.updateFlagPill(board.getRemainingMines());
-        gameView.setWinkFace();
-        updateTileView(tile);
+    private void handleSave() {
+
+        Score score = board.getScore();
+        try {
+            Connection connection = DbConnection.getConnection();
+            ScoreDao scoreDao = new ScoreDao(connection);
+            scoreDao.save(score);
+            System.out.println("Saved successfully!");
+        } catch (SQLException e) {
+            System.out.println("There was an error while trying to save the score.");
+            System.out.println(e.getMessage());
+        }
+
     }
+
+
 
     public void updateTileView(Tile tile) {
         TileButton tileButton = gameView.getTileButton(tile.getPosition());
