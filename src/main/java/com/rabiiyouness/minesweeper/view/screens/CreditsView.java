@@ -21,7 +21,7 @@ public class CreditsView {
 
         root = new StackPane();
 
-        creditsTopBar = new TopBar();
+        creditsTopBar = new TopBar("CREDITS");
         VBox creditsCard = getCreditsCard();
         creditsCard.setMaxHeight(Region.USE_PREF_SIZE);
 

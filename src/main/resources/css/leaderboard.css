@@ -1,172 +1,217 @@
 /* ══════════════════════════════
-   LEADERBOARD — TOP BAR
+   TOP BAR
 ══════════════════════════════ */
 
-.leaderboard-topbar {
-    -fx-background-color: rgba(57, 29, 5, 0.6);
-    -fx-border-color: rgba(232, 196, 150, 0.3);
-    -fx-border-width: 0.5px;
-    -fx-border-radius: 12px;
-    -fx-background-radius: 12px;
-    -fx-padding: 10 14 10 14;
-    -fx-alignment: CENTER_LEFT;
+.leaderboard-title {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8c496;
+    -fx-letter-spacing: 3px;
+}
+
+
+/* ══════════════════════════════
+   CONTENT WRAPPER
+══════════════════════════════ */
+
+.leaderboard-content-wrapper {
+    -fx-padding: 24 32 32 32;
     -fx-spacing: 0;
 }
 
-.leaderboard-topbar-title {
-    -fx-font-family: Inter, monospace;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #f4b078;
-    -fx-alignment: CENTER;
-}
-
-/* Reuses .topbar-icon-button and .topbar-icon-button-icon from game.css */
-
 
 /* ══════════════════════════════
-   LEADERBOARD — TAB BAR
+   TAB PANE
 ══════════════════════════════ */
 
-.leaderboard-tab-bar {
-    -fx-background-color: rgba(57, 29, 5, 0.4);
-    -fx-border-color: rgba(232, 196, 150, 0.2);
-    -fx-border-width: 0.5px;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-padding: 5;
-    -fx-spacing: 6;
-    -fx-alignment: CENTER;
+.leaderboard-tab-pane {
+    -fx-background-color: transparent;
+    -fx-tab-min-width: 120px;
+    -fx-tab-max-width: 160px;
+    -fx-max-width: 560px;
 }
 
-.leaderboard-tab {
-    -fx-font-family: Inter, monospace;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #a07040;
+.leaderboard-tab-pane .tab-content-area {
     -fx-background-color: transparent;
+}
+
+.leaderboard-tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+/* Tab header area background */
+.leaderboard-tab-pane > .tab-header-area {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.leaderboard-tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: rgba(57, 29, 5, 0.30);
     -fx-border-color: transparent;
-    -fx-border-radius: 7px;
-    -fx-background-radius: 7px;
-    -fx-padding: 8 16 8 16;
+    -fx-padding: 8 20;
+    -fx-background-radius: 4 4 0 0;
     -fx-cursor: hand;
 }
 
-.leaderboard-tab:hover {
-    -fx-text-fill: #f4b078;
-    -fx-background-color: rgba(244, 176, 120, 0.1);
+.leaderboard-tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: rgba(107, 76, 37, 0.60);
+    -fx-border-color: rgba(200, 112, 32, 0.70) rgba(200, 112, 32, 0.70) transparent rgba(200, 112, 32, 0.70);
+    -fx-border-width: 1px 1px 0 1px;
+    -fx-border-radius: 4 4 0 0;
 }
 
-.leaderboard-tab-active {
-    -fx-text-fill: #f4b078;
-    -fx-background-color: rgba(244, 176, 120, 0.2);
-    -fx-border-color: rgba(244, 176, 120, 0.4);
-    -fx-border-width: 0.5px;
-    -fx-border-radius: 7px;
-    -fx-background-radius: 7px;
+.leaderboard-tab-pane > .tab-header-area > .headers-region > .tab:hover:!selected {
+     -fx-background-color: rgba(107, 76, 37);
 }
 
-
-/* ══════════════════════════════
-   LEADERBOARD — TABLE CARD
-══════════════════════════════ */
-
-.leaderboard-table-card {
-    -fx-background-color: rgb(57, 29, 5, 0.25);
-    -fx-border-color: rgba(232, 196, 150, 0.5);
-    -fx-border-width: 0.5px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
+/* Tab content area */
+.leaderboard-tab-pane > .tab-content-area {
+    -fx-background-color: rgba(57, 29, 5, 0.25);
+    -fx-border-color: rgba(200, 112, 32, 0.50);
+    -fx-border-width: 1px;
+    -fx-border-radius: 0 4 4 4;
+    -fx-background-radius: 0 4 4 4;
+    -fx-padding: 0;
 }
 
-
-/* ══════════════════════════════
-   LEADERBOARD — TABLE HEADER ROW
-══════════════════════════════ */
-
-.leaderboard-table-header {
-    -fx-background-color: rgba(57, 29, 5, 0.5);
-    -fx-border-color: transparent transparent rgba(232, 196, 150, 0.3) transparent;
-    -fx-border-width: 0 0 0.5px 0;
-    -fx-padding: 10 16 10 16;
-}
-
-.leaderboard-header-label {
-    -fx-font-family: Inter, monospace;
-    -fx-font-size: 11px;
+.leaderboard-tab-label {
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #a07040;
+    -fx-text-fill: #c87020;
+    -fx-letter-spacing: 1px;
+}
+
+.leaderboard-tab-pane > .tab-header-area > .headers-region > .tab:selected .leaderboard-tab-label {
+    -fx-text-fill: #e8c496;
 }
 
 
 /* ══════════════════════════════
-   LEADERBOARD — SCORE ROWS
+   SCORE TABLE
 ══════════════════════════════ */
 
-.leaderboard-row {
-    -fx-padding: 10 16 10 16;
-    -fx-border-color: transparent transparent rgba(232, 196, 150, 0.1) transparent;
-    -fx-border-width: 0 0 0.5px 0;
-    -fx-background-color: transparent;
-}
-
-.leaderboard-row:hover {
-    -fx-background-color: rgba(244, 176, 120, 0.07);
-}
-
-/* Last row — no bottom border */
-.leaderboard-row-last {
-    -fx-border-color: transparent;
+.score-table {
+    -fx-padding: 0;
+    -fx-spacing: 0;
+    -fx-min-width: 480px;
+    -fx-max-width: 640px;
+    -fx-pref-width: 560px;
 }
 
 
-/* ══════════════════════════════
-   LEADERBOARD — CELL LABELS
-══════════════════════════════ */
+/* ── Header row ── */
 
-.leaderboard-rank {
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #6b4c25;
+.score-header-row {
+    -fx-background-color: rgba(57, 29, 5, 0.70);
+    -fx-border-color: transparent transparent rgba(200, 112, 32, 0.40) transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 10 16;
+    -fx-spacing: 0;
+    -fx-alignment: CENTER_LEFT;
 }
 
-/* Top 3 rank overrides — add these alongside .leaderboard-rank */
-.leaderboard-rank-gold {
-    -fx-text-fill: #f4d078;
-}
-
-.leaderboard-rank-silver {
-    -fx-text-fill: #c8c8d8;
-}
-
-.leaderboard-rank-bronze {
-    -fx-text-fill: #c87850;
-}
-
-.leaderboard-time {
-    -fx-font-family: "Courier New", monospace;
+.score-header-cell {
+    -fx-font-family: Inter, "Courier New", monospace;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f4b078;
+    -fx-text-fill: #c87020;
+    -fx-letter-spacing: 1px;
+    -fx-padding: 0 8;
 }
 
-.leaderboard-date {
-    -fx-font-family: Inter, monospace;
-    -fx-font-size: 13px;
-    -fx-text-fill: #a07040;
+
+/* ── Data rows ── */
+
+.score-data-row {
+    -fx-background-color: rgba(22, 14, 4, 0.40);
+    -fx-padding: 10 16;
+    -fx-spacing: 0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-color: transparent transparent rgba(74, 51, 20, 0.30) transparent;
+    -fx-border-width: 0 0 0.5px 0;
+    -fx-cursor: default;
+}
+
+.score-data-row-even {
+    -fx-background-color: rgba(57, 29, 5, 0.20);
+}
+
+.score-data-row:hover {
+    -fx-background-color: rgba(107, 76, 37, 0.30);
+}
+
+.score-data-cell {
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-text-fill: #d4a870;
+    -fx-padding: 0 8;
+}
+
+
+/* ── Column widths ── */
+
+.score-cell-rank {
+    -fx-min-width: 40px;
+    -fx-max-width: 40px;
+    -fx-alignment: CENTER;
+}
+
+.score-cell-time {
+    -fx-min-width: 90px;
+    -fx-max-width: 90px;
     -fx-alignment: CENTER_RIGHT;
 }
 
+.score-cell-date {
+    -fx-min-width: 110px;
+    -fx-max-width: 110px;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-text-fill: rgba(200, 160, 90, 0.60);
+    -fx-font-size: 16px;
+}
+
+
+/* ── Rank medal colours ── */
+
+.score-rank-gold {
+    -fx-text-fill: #ffd700;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.50), 6, 0, 0, 0);
+}
+
+.score-rank-silver {
+    -fx-text-fill: #c0c0c0;
+    -fx-font-weight: bold;
+}
+
+.score-rank-bronze {
+    -fx-text-fill: #cd7f32;
+    -fx-font-weight: bold;
+}
+
+.score-rank-default {
+    -fx-text-fill: rgba(200, 160, 90, 0.55);
+}
+
 
 /* ══════════════════════════════
-   LEADERBOARD — EMPTY STATE
+   EMPTY STATE
 ══════════════════════════════ */
 
-.leaderboard-empty {
-    -fx-font-family: Inter, monospace;
-    -fx-font-size: 14px;
-    -fx-text-fill: #6b4c25;
-    -fx-padding: 40 16 40 16;
+.score-empty-label {
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(200, 160, 90, 0.45);
+    -fx-padding: 48 0;
+    -fx-alignment: CENTER;
+}
+
+.score-error-label {
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(220, 80, 60, 0.80);
+    -fx-padding: 48 0;
     -fx-alignment: CENTER;
 }
