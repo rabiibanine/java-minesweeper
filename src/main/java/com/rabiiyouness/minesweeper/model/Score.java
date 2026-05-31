@@ -1,6 +1,7 @@
 package com.rabiiyouness.minesweeper.model;
 
 import com.rabiiyouness.minesweeper.model.enums.Difficulty;
+import com.rabiiyouness.minesweeper.util.TimeFormatter;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +26,7 @@ public class Score {
     public Difficulty getDifficulty() {return difficulty;}
     public int getCompletionTimeSeconds() {return completionTimeSeconds;}
     public LocalDateTime getPlayedAt() {return playedAt;}
+    public String getFormattedDate() { return TimeFormatter.format(completionTimeSeconds);}
 
     @Override
     public String toString() {

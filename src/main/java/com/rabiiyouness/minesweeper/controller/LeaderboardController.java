@@ -11,44 +11,65 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import static com.rabiiyouness.minesweeper.dao.DbConnection.getConnection;
+
 public class LeaderboardController {
 
     private final LeaderboardView leaderboardView;
-//    private final ScoreDao scoreDao;
-    private final MainController mainController;
-//    private final Connection connection;
+    private final MainController controller;
 
     public LeaderboardController(MainController mainController) {
-//        this.connection = getConnection();
-//        this.scoreDao = new ScoreDao(connection);
-        this.mainController = mainController;
+        this.controller = mainController;
         this.leaderboardView = new LeaderboardView();
 
+        bindStaticEvents();
         loadScores();
     }
 
-    private void loadScores() {
-        for (Difficulty difficulty : Difficulty.values()) {
-//            List<Score> scores = scoreDao.findTop10(difficulty);
-//            leaderboardView.populateTable(difficulty, scores);
-        }
-    }
+    // ── Public API ───────────────────────────────────────────────────────
 
-    public Parent getLeaderboardView() {
-        return leaderboardView.getRoot();
-    }
-
-    private Connection getConnection() {
-        try {
-            Connection connection = DbConnection.getConnection();
-            return connection;
-        } catch (SQLException e) {
-            System.out.println("An error occured during DB connection: " + e.getMessage());
-            throw new RuntimeException("An error occurred during connection");
-        }
+    public LeaderboardView getView() {
+        return leaderboardView;
     }
 
     public Parent getRoot() {
         return leaderboardView.getRoot();
     }
+
+    // ── Event binding ────────────────────────────────────────────────────
+
+    private void bindStaticEvents() {
+        leaderboardView.getHomeButton().setOnAction(event -> controller.navigateHome());
+    }
+
+    // ── Data loading ─────────────────────────────────────────────────────
+
+    /**
+     * Fetches the top-10 scores for every difficulty and pushes them into
+     * the view. Mirrors the pattern used in GameController (bind first,
+     * then populate state).
+     */
+    private void loadScores() {
+        try (Connection connection = DbConnection.getConnection()) {
+            ScoreDao scoreDao = new ScoreDao(connection);
+            for (Difficulty difficulty : Difficulty.values()) {
+                List<Score> scores = scoreDao.findTop10(difficulty);
+                leaderboardView.populateTable(difficulty, scores);
+            }
+        } catch (SQLException e) {
+            System.out.println("An error has occurred while fetching scores: " + e.getMessage());
+            leaderboardView.displayError("Error while fetching the scores :(.");
+        }
+    }
+
+    /**
+     * Forces a fresh reload from the database.
+     * Can be called by MainController after a game ends and a new score
+     * is saved, so the leaderboard reflects the latest results.
+     */
+    public void refresh() {
+        leaderboardView.clearTables();
+        loadScores();
+    }
+
 }

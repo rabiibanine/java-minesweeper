@@ -16,9 +16,12 @@ public class TopBar {
 
         private StackPane root;
         private Button homeButton;
+        private String title;
 
-        public TopBar() {
-            this.root = new StackPane();
+        public TopBar(String title) {
+            this.title = title;
+
+            root = new StackPane();
             root.getStyleClass().add("topbar");
 
             HBox leftSide = buildLeftSide();
@@ -42,7 +45,7 @@ public class TopBar {
         public HBox buildLeftSide() {
             HBox leftSide = new HBox();
 
-            Label logoLabel = new Label("CREDITS");
+            Label logoLabel = new Label(title);
             logoLabel.setMaxHeight(Double.MAX_VALUE);
             logoLabel.getStyleClass().add("topbar-logo-label");
             logoLabel.setCache(true);
