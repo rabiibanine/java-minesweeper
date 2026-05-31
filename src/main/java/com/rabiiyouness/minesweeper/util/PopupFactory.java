@@ -8,13 +8,13 @@ import java.util.List;
 public class PopupFactory {
 
     // Generates the Win Blueprint
-    public static PopupConfig createWinConfig(String time, Runnable onRestart, Runnable onMenu) {
+    public static PopupConfig createWinConfig(String time, Runnable onRestart, Runnable onSave) {
         return new PopupConfig(
                 "Victory!",
                 "You cleared the board in " + time + ".",
                 List.of(
                         new PopupAction("Play Again", onRestart, true),
-                        new PopupAction("Main Menu", onMenu, false)
+                        new PopupAction("Save", onSave, false)
                 )
         );
     }
@@ -71,4 +71,5 @@ public class PopupFactory {
 
         );
     }
+
 }

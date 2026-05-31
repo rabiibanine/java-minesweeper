@@ -1,7 +1,10 @@
 package com.rabiiyouness.minesweeper.controller;
 
+import com.rabiiyouness.minesweeper.dao.DbConnection;
+import com.rabiiyouness.minesweeper.dao.ScoreDao;
 import com.rabiiyouness.minesweeper.model.Board;
 import com.rabiiyouness.minesweeper.model.Position;
+import com.rabiiyouness.minesweeper.model.Score;
 import com.rabiiyouness.minesweeper.model.Tile;
 import com.rabiiyouness.minesweeper.model.enums.Difficulty;
 import com.rabiiyouness.minesweeper.model.enums.GameState;
@@ -12,12 +15,16 @@ import com.rabiiyouness.minesweeper.view.components.TileButton;
 import com.rabiiyouness.minesweeper.view.screens.GameView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.util.Duration;
 
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 
@@ -118,7 +125,7 @@ public class GameController {
         gameView.getPopupOverlay().show(settingsConfig);
     }
 
-    private void restart() {
+    public void restart() {
         board.initializeGame(difficulty);
         gameView.changeDifficulty(difficulty);
         bindGridEvents();
@@ -141,13 +148,21 @@ public class GameController {
         if (board.getGameState() == GameState.LOST) handleLoss();
     }
 
+    public void handleFlag(Position pos) {
+        Tile tile = board.getTileAt(pos);
+        board.toggleFlag(pos);
+        gameView.updateFlagPill(board.getRemainingMines());
+        gameView.setWinkFace();
+        updateTileView(tile);
+    }
+
     private void handleWin() {
         updateAllTilesView();
         String formattedTime = TimeFormatter.formatReadable(board.getElapsedSeconds());
         PopupConfig winConfig = PopupFactory.createWinConfig(
                 formattedTime,
-                this::handleReset,
-                controller::navigateHome
+                this::restart,
+                this::handleSave
         );
         gameView.getPopupOverlay().show(winConfig);
         gameView.playConfetti();
@@ -158,19 +173,48 @@ public class GameController {
 
         PopupConfig lossConfig = PopupFactory.createLoseConfig(
                 this::restart,
-                controller::navigateHome
+                () -> {
+                    controller.navigateHome();
+                    restart();
+                }
         );
         gameView.getPopupOverlay().show(lossConfig);
         gameView.setDizzyFace();
     }
 
-    public void handleFlag(Position pos) {
-        Tile tile = board.getTileAt(pos);
-        board.toggleFlag(pos);
-        gameView.updateFlagPill(board.getRemainingMines());
-        gameView.setWinkFace();
-        updateTileView(tile);
+    private void handleSave() {
+
+        Task<Void> saveTask = new Task<Void>(){
+
+            @Override
+            protected Void call() throws Exception {
+
+                try (Connection connection = DbConnection.getConnection();) {
+
+                    ScoreDao scoreDao = new ScoreDao(connection);
+                    scoreDao.save(board.getScore());
+                    return null;
+
+                } catch (SQLException e) {
+                    throw new Exception("Database error: " + e.getMessage(), e);
+                }
+            }
+
+        };
+
+        saveTask.setOnSucceeded(e -> {
+            System.out.println("Saved successfully!");
+        });
+
+        saveTask.setOnFailed(e -> {
+            System.out.println("Failed to save. Try again.");
+            System.out.println(saveTask.getException().getMessage());
+        });
+
+        new Thread(saveTask).start();
     }
+
+
 
     public void updateTileView(Tile tile) {
         TileButton tileButton = gameView.getTileButton(tile.getPosition());
