@@ -1,0 +1,74 @@
+/* ══════════════════════════════
+   Credits Card
+══════════════════════════════ */
+
+.credits-card {
+    -fx-background-color: rgba(244, 176, 120, 0.05);
+    -fx-border-color: rgba(244, 176, 120, 0.25);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 24 28 24 28;
+    -fx-max-width: 420;
+}
+
+.credits-title {
+    -fx-font-family: Inter;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(244, 176, 120, 0.5);
+    -fx-letter-spacing: 3px;
+}
+
+.credits-separator {
+    -fx-background-color: rgba(244, 176, 120, 0.15);
+    -fx-padding: 0;
+}
+
+.credits-separator .line {
+    -fx-border-color: rgba(244, 176, 120, 0.15);
+    -fx-border-width: 1 0 0 0;
+}
+
+.credits-rows {
+    -fx-padding: 4 0 0 0;
+}
+
+.credits-row {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.credits-key {
+    -fx-font-family: Inter;
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(244, 176, 120, 0.5);
+}
+
+.credits-value {
+    -fx-font-family: Inter;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+}
+
+.credits-repo-row {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 4 0 0 0;
+}
+
+.credits-repo-icon {
+    -fx-icon-color: rgba(244, 176, 120, 0.5);
+    -fx-icon-size: 16px;
+}
+
+.credits-repo-link {
+    -fx-font-family: Inter;
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(244, 176, 120, 0.5);
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.credits-repo-link:hover {
+    -fx-text-fill: #f4b078;
+}

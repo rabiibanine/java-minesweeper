@@ -1,3 +1,87 @@
 .root {
     -fx-background-color: linear-gradient(to top, #110b06, #180e07, #110b06);
 }
+
+/* ══════════════════════════════
+   topbar
+══════════════════════════════ */
+
+.topbar {
+    -fx-background-color: #1e1208;
+    -fx-border-color: #f4b078;
+    -fx-border-width: 0 0 0.5 0;
+    -fx-padding: 8 16 8 16;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12;
+}
+
+/* App logo / title */
+.topbar-logo-label {
+    -fx-font-family: Inter;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+    -fx-letter-spacing: 2px;
+}
+
+.topbar-logo-icon {
+    -fx-icon-color: #f4b078;
+    -fx-icon-size: 36px
+}
+
+.topbar-right {
+    -fx-spacing: 8;
+}
+
+.topbar-left {
+
+}
+
+/* Spacer to push right-side controls to the right */
+.topbar-spacer {
+    -fx-hgrow: ALWAYS;
+}
+
+/* Right-side pill containers (mine count, timer) */
+.topbar-pill {
+    -fx-background-color: rgba(244, 176, 120, 0.2);
+    -fx-background-radius: 100px;
+    -fx-padding: 4 14 4 14;
+    -fx-spacing: 8;
+    -fx-alignment: CENTER;
+}
+
+.topbar-pill-icon {
+    -fx-icon-color: #f4b078;
+    -fx-icon-size: 24px;
+}
+
+.topbar-pill-label {
+    -fx-font-family: Inter, monospace;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f4b078;
+}
+
+/* Icon-only topbar buttons (restart, settings) */
+.topbar-icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.topbar-icon-button:hover {
+    -fx-background-color: rgba(244, 176, 120, 0.2);
+    -fx-background-radius: 12px;
+}
+
+.topbar-icon-button-icon {
+    -fx-icon-color: #e4a068;
+    -fx-icon-size: 36px;
+}
+
+.topbar-face-icon {
+    -fx-icon-color: #e4a068;
+    -fx-icon-size: 36px;
+}

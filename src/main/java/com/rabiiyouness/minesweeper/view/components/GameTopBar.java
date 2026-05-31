@@ -23,7 +23,7 @@ public class GameTopBar {
     private Button settingsButton;
 
     public GameTopBar() {
-        this.root = new StackPane();
+        root = new StackPane();
         root.getStyleClass().add("topbar");
 
         HBox leftSide = buildLeftSide();

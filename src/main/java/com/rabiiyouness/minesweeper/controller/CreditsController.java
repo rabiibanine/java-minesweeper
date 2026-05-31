@@ -11,6 +11,17 @@ public class CreditsController {
     public CreditsController(MainController controller) {
         this.controller = controller;
         this.creditsView = new CreditsView();
+
+        bindStaticEvents();
+    }
+
+    private void bindStaticEvents() {
+        // Home Button
+        creditsView.getHomeButton().setOnAction(event -> handleHome());
+    }
+
+    private void handleHome() {
+        controller.navigateHome();
     }
 
     public CreditsView getView(){
