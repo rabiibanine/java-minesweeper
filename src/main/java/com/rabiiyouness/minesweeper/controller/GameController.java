@@ -15,6 +15,7 @@ import com.rabiiyouness.minesweeper.view.components.TileButton;
 import com.rabiiyouness.minesweeper.view.screens.GameView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -183,17 +184,34 @@ public class GameController {
 
     private void handleSave() {
 
-        Score score = board.getScore();
-        try {
-            Connection connection = DbConnection.getConnection();
-            ScoreDao scoreDao = new ScoreDao(connection);
-            scoreDao.save(score);
-            System.out.println("Saved successfully!");
-        } catch (SQLException e) {
-            System.out.println("There was an error while trying to save the score.");
-            System.out.println(e.getMessage());
-        }
+        Task<Void> saveTask = new Task<Void>(){
 
+            @Override
+            protected Void call() throws Exception {
+
+                try (Connection connection = DbConnection.getConnection();) {
+
+                    ScoreDao scoreDao = new ScoreDao(connection);
+                    scoreDao.save(board.getScore());
+                    return null;
+
+                } catch (SQLException e) {
+                    throw new Exception("Database error: " + e.getMessage(), e);
+                }
+            }
+
+        };
+
+        saveTask.setOnSucceeded(e -> {
+            System.out.println("Saved successfully!");
+        });
+
+        saveTask.setOnFailed(e -> {
+            System.out.println("Failed to save. Try again.");
+            System.out.println(saveTask.getException().getMessage());
+        });
+
+        new Thread(saveTask).start();
     }
 
 
