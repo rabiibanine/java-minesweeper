@@ -118,7 +118,7 @@ public class GameController {
         gameView.getPopupOverlay().show(settingsConfig);
     }
 
-    private void restart() {
+    public void restart() {
         board.initializeGame(difficulty);
         gameView.changeDifficulty(difficulty);
         bindGridEvents();
@@ -146,8 +146,11 @@ public class GameController {
         String formattedTime = TimeFormatter.formatReadable(board.getElapsedSeconds());
         PopupConfig winConfig = PopupFactory.createWinConfig(
                 formattedTime,
-                this::handleReset,
-                controller::navigateHome
+                this::restart,
+                () -> {
+                    restart();
+                    controller.navigateHome();
+                }
         );
         gameView.getPopupOverlay().show(winConfig);
         gameView.playConfetti();
@@ -158,7 +161,10 @@ public class GameController {
 
         PopupConfig lossConfig = PopupFactory.createLoseConfig(
                 this::restart,
-                controller::navigateHome
+                () -> {
+                    controller.navigateHome();
+                    restart();
+                }
         );
         gameView.getPopupOverlay().show(lossConfig);
         gameView.setDizzyFace();

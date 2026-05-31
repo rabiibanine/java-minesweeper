@@ -43,7 +43,6 @@ public class MainController {
     }
 
     public void navigateHome() {
-        gameController.handleReset();
         navigate(menuController.getRoot());
     }
 
