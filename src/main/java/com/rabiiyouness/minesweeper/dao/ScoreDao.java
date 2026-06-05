@@ -19,20 +19,22 @@ public class ScoreDao{
 
         String sql = """
                 INSERT INTO scores(
+                    name,
                     difficulty,
                     completion_time_seconds,
                     played_at
                 )
-                VALUES (?, ?, ?)
+                VALUES (?, ?, ?, ?)
                 """;
 
         try (PreparedStatement stmt =
                      connection.prepareStatement(sql)) {
 
-            stmt.setString(1, score.getDifficulty().name());
-            stmt.setInt(2, score.getCompletionTimeSeconds());
+            stmt.setString(1, score.getName());
+            stmt.setString(2, score.getDifficulty().name());
+            stmt.setInt(3, score.getCompletionTimeSeconds());
             stmt.setTimestamp(
-                    3,
+                    4,
                     Timestamp.valueOf(score.getPlayedAt())
             );
 
@@ -64,6 +66,7 @@ public class ScoreDao{
             while (rs.next()) {
 
                 Score score = new Score(
+                        rs.getString("name"),
                         Difficulty.valueOf(
                                 rs.getString("difficulty")
                         ),

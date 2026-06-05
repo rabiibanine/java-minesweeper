@@ -26,6 +26,7 @@ import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GameController {
@@ -191,8 +192,10 @@ public class GameController {
 
                 try (Connection connection = DbConnection.getConnection();) {
 
+                    String name = gameView.getPopupOverlay().getName();
                     ScoreDao scoreDao = new ScoreDao(connection);
-                    scoreDao.save(board.getScore());
+                    Score score = new Score(name, board.getDifficulty(), board.getElapsedSeconds(), LocalDateTime.now());
+                    scoreDao.save(score);
                     return null;
 
                 } catch (SQLException e) {

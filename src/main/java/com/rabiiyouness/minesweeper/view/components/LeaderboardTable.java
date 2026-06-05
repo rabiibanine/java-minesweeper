@@ -78,10 +78,11 @@ public class LeaderboardTable {
 
     private HBox buildHeaderRow() {
         Label rank = makeCell("#",    "score-header-cell", "score-cell-rank");
+        Label name = makeCell("NAME", "score-header-cell", "score-cell-name");
         Label time = makeCell("TIME", "score-header-cell", "score-cell-time");
         Label date = makeCell("DATE", "score-header-cell", "score-cell-date");
 
-        HBox row = new HBox(rank, time, date);
+        HBox row = new HBox(rank, name, time, date);
         row.getStyleClass().add("score-header-row");
         return row;
     }
@@ -96,10 +97,11 @@ public class LeaderboardTable {
         };
 
         Label rankLabel = makeCell(String.valueOf(rank), "score-data-cell", "score-cell-rank", rankStyle);
+        Label nameLabel = makeCell(score.getName(), "score-data-cell", "score-cell-name");
         Label timeLabel = makeCell(TimeFormatter.format(score.getCompletionTimeSeconds()), "score-data-cell", "score-cell-time");
         Label dateLabel = makeCell(score.getFormattedDate(), "score-data-cell", "score-cell-date");
 
-        HBox row = new HBox(rankLabel, timeLabel, dateLabel);
+        HBox row = new HBox(rankLabel, nameLabel, timeLabel, dateLabel);
         row.getStyleClass().add("score-data-row");
 
         // Alternate row shading
