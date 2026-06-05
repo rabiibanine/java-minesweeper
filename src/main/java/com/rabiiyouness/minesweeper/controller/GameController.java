@@ -102,7 +102,7 @@ public class GameController {
             gameView.getPopupOverlay().show(resetConfig);
             return;
         };
-
+        restart();
     }
 
     private void handleHome() {
@@ -156,7 +156,6 @@ public class GameController {
     }
 
     private void handleWin() {
-        stopTimer();
         updateAllTilesView();
         String formattedTime = TimeFormatter.formatReadable(board.getElapsedSeconds());
         PopupConfig winConfig = PopupFactory.createWinConfig(
