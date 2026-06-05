@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.CacheHint;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -20,6 +21,7 @@ public class PopupOverlay {
     private FontIcon closeIcon;
     private Label titleLabel;
     private Label messageLabel;
+    private TextField nameInput;
     private HBox buttonLayout;
 
     public PopupOverlay() {
@@ -64,12 +66,20 @@ public class PopupOverlay {
         messageLabel.setCache(true);
         messageLabel.setCacheHint(CacheHint.QUALITY);
 
+        // Name Field
+        nameInput = new TextField();
+        nameInput.setPromptText("Enter your name...");
+        nameInput.getStyleClass().add("popup-name-input");
+        nameInput.setCache(true);
+        nameInput.setCacheHint(CacheHint.QUALITY);
+        nameInput.setVisible(false);
+
         // Button Layout
         buttonLayout = new HBox(15);
         buttonLayout.setAlignment(Pos.CENTER);
 
         // Add everything to the card in your exact order
-        popupWindow.getChildren().addAll(header, titleLabel, messageLabel, buttonLayout);
+        popupWindow.getChildren().addAll(header, titleLabel, messageLabel, nameInput, buttonLayout);
 
         // Add the card to the overlay and hide it initially
         root.getChildren().add(popupWindow);
@@ -83,6 +93,14 @@ public class PopupOverlay {
         // 1. Update text
         titleLabel.setText(config.title());
         messageLabel.setText(config.message());
+        if (config.title().equals("Victory!")) {
+            nameInput.setVisible(true);
+            nameInput.setManaged(true);
+        }
+        else {
+            nameInput.setVisible(false);
+            nameInput.setManaged(false);
+        };
 
         // 2. Clear old buttons
         buttonLayout.getChildren().clear();
@@ -116,5 +134,9 @@ public class PopupOverlay {
 
     public StackPane getComponent() {
         return root;
+    }
+
+    public String getName() {
+        return nameInput.getText().trim();
     }
 }

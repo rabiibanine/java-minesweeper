@@ -19,7 +19,6 @@ public class Board {
     private int       flagsPlaced    = 0;
     private int       revealedTiles  = 0;
     private int       elapsedSeconds = 0;
-    private Score     score;
 
     /**
      * Réinitialise tout l’état du jeu et construit une grille vide.
@@ -43,7 +42,6 @@ public class Board {
         flagsPlaced    = 0;
         revealedTiles  = 0;
         elapsedSeconds = 0;
-        score          = null;
     }
 
     /**
@@ -85,7 +83,6 @@ public class Board {
         if (checkWin()) {
             gameState = GameState.WON;
             autoFlagRemainingMines();
-            score = new Score(difficulty, elapsedSeconds, LocalDateTime.now());
         }
 
         return changed;
@@ -117,7 +114,6 @@ public class Board {
     // =========================================================================
     public GameState getGameState() { return gameState; }
     public int getRemainingMines() { return mines - flagsPlaced; }
-    public Score getScore() { return score; }
     /**
      * @return la case située à cette position
      * @throws IllegalArgumentException si la position est hors de la grille
@@ -192,13 +188,23 @@ public class Board {
         }
     }
 
-    private void autoFlagRemainingMines() {
+    // TODO turn private once done with debugging
+    public void autoFlagRemainingMines() {
         for (Tile[] row : tiles) {
             for (Tile t : row) {
                 if (t.isMine()) { t.setState(TileState.FLAGGED); }
             }
         }
         flagsPlaced = mines;
+    }
+    public void autoReveal() {
+        for (Tile[] row : tiles) {
+            for (Tile t : row) {
+                if (!t.isMine()) {
+                    t.setState(TileState.REVEALED);
+                }
+            }
+        }
     }
 
     private boolean checkWin() {
@@ -236,5 +242,6 @@ public class Board {
     public void tickSecond() {
         if (gameState == GameState.RUNNING) { elapsedSeconds++; }
     }
+    public Difficulty getDifficulty() { return difficulty; }
     public int getElapsedSeconds() { return elapsedSeconds; }
 }

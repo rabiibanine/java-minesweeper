@@ -52,6 +52,7 @@ public class MainController {
 
     public void navigateLeaderboard() {
         navigate(leaderboardController.getRoot());
+        leaderboardController.refresh();
     }
 
     public void navigateOptions() {

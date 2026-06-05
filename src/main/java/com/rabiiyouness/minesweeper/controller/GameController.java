@@ -26,6 +26,7 @@ import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GameController {
@@ -101,7 +102,7 @@ public class GameController {
             gameView.getPopupOverlay().show(resetConfig);
             return;
         };
-
+        restart();
     }
 
     private void handleHome() {
@@ -140,9 +141,7 @@ public class GameController {
 
     public void handleReveal(Position pos) {
         List<Tile> changed = board.revealTile(pos);
-        for (Tile tile : changed) {
-            updateTileView(tile);
-        }
+        updateAllTilesView();
         gameView.setNeutralFace();
         if (board.getGameState() == GameState.WON) handleWin();
         if (board.getGameState() == GameState.LOST) handleLoss();
@@ -191,8 +190,10 @@ public class GameController {
 
                 try (Connection connection = DbConnection.getConnection();) {
 
+                    String name = gameView.getPopupOverlay().getName();
                     ScoreDao scoreDao = new ScoreDao(connection);
-                    scoreDao.save(board.getScore());
+                    Score score = new Score(name, board.getDifficulty(), board.getElapsedSeconds(), LocalDateTime.now());
+                    scoreDao.save(score);
                     return null;
 
                 } catch (SQLException e) {
@@ -258,9 +259,15 @@ public class GameController {
     // TODO remove this (DEBUGGING ONLY)
     public void attachDebugKeybinds(Scene scene) {
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.W) handleWin();
-            if (event.getCode() == KeyCode.L) handleLoss();
-            if (event.getCode() == KeyCode.Y) gameView.hidePopup();
+            if (event.getCode() == KeyCode.W) {
+                board.autoFlagRemainingMines();
+                updateAllTilesView();
+            }
+            if (event.getCode() == KeyCode.E) {
+                board.autoReveal();
+                updateAllTilesView();
+                handleWin();
+            }
         });
     }
 

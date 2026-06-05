@@ -11,18 +11,21 @@ public class Score {
     private static long id_comp = 0;
 
     private final long id;
+    private final String name;
     private final Difficulty difficulty;
     private final int completionTimeSeconds;
     private final LocalDateTime playedAt;
 
-    public Score(Difficulty difficulty, int completionTimeSeconds, LocalDateTime playedAt) {
+    public Score(String name, Difficulty difficulty, int completionTimeSeconds, LocalDateTime playedAt) {
         this.id = id_comp++;
+        this.name = name;
         this.difficulty = difficulty;
         this.completionTimeSeconds = completionTimeSeconds;
         this.playedAt = playedAt;
     }
 
     public long getId() {return id;}
+    public String getName() {return name;}
     public Difficulty getDifficulty() {return difficulty;}
     public int getCompletionTimeSeconds() {return completionTimeSeconds;}
     public LocalDateTime getPlayedAt() {return playedAt;}
@@ -32,6 +35,7 @@ public class Score {
     public String toString() {
         return "Score{" +
                 "id=" + id +
+                ", name=" + name +
                 ", difficulty=" + difficulty +
                 ", completionTimeSeconds=" + completionTimeSeconds +
                 ", playedAt=" + playedAt +
