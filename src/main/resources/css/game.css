@@ -270,3 +270,40 @@
     -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.6), 10, 0, 0, 0);
 }
 
+.popup-name-input {
+    -fx-background-color: rgba(34, 24, 16, 0.6);
+    -fx-border-color: rgba(200, 112, 32, 0.50);
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: #e8c496;
+    -fx-prompt-text-fill: rgba(200, 160, 90, 0.40);
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-max-width: 300px;
+    -fx-padding: 8 12;
+}
+
+.popup-name-input:focused {
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.50), 4, 0, 0, 2);
+}
+
+
+.popup-name-input-invalid {
+    -fx-background-color: rgba(88, 0, 0, 0.6);
+    -fx-border-color: rgba(200, 32, 32, 0.5);
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: #e8c496;
+    -fx-prompt-text-fill: rgba(200, 160, 90, 0.40);
+    -fx-font-family: Inter, "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-max-width: 300px;
+    -fx-padding: 8 12;
+}
+
+.popup-name-input-invalid:focused {
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.50), 4, 0, 0, 2);
+}
+
