@@ -188,13 +188,23 @@ public class Board {
         }
     }
 
-    private void autoFlagRemainingMines() {
+    // TODO turn private once done with debugging
+    public void autoFlagRemainingMines() {
         for (Tile[] row : tiles) {
             for (Tile t : row) {
                 if (t.isMine()) { t.setState(TileState.FLAGGED); }
             }
         }
         flagsPlaced = mines;
+    }
+    public void autoReveal() {
+        for (Tile[] row : tiles) {
+            for (Tile t : row) {
+                if (!t.isMine()) {
+                    t.setState(TileState.REVEALED);
+                }
+            }
+        }
     }
 
     private boolean checkWin() {

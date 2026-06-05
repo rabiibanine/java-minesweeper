@@ -141,9 +141,7 @@ public class GameController {
 
     public void handleReveal(Position pos) {
         List<Tile> changed = board.revealTile(pos);
-        for (Tile tile : changed) {
-            updateTileView(tile);
-        }
+        updateAllTilesView();
         gameView.setNeutralFace();
         if (board.getGameState() == GameState.WON) handleWin();
         if (board.getGameState() == GameState.LOST) handleLoss();
@@ -158,6 +156,7 @@ public class GameController {
     }
 
     private void handleWin() {
+        stopTimer();
         updateAllTilesView();
         String formattedTime = TimeFormatter.formatReadable(board.getElapsedSeconds());
         PopupConfig winConfig = PopupFactory.createWinConfig(
@@ -261,9 +260,15 @@ public class GameController {
     // TODO remove this (DEBUGGING ONLY)
     public void attachDebugKeybinds(Scene scene) {
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.W) handleWin();
-            if (event.getCode() == KeyCode.L) handleLoss();
-            if (event.getCode() == KeyCode.Y) gameView.hidePopup();
+            if (event.getCode() == KeyCode.W) {
+                board.autoFlagRemainingMines();
+                updateAllTilesView();
+            }
+            if (event.getCode() == KeyCode.E) {
+                board.autoReveal();
+                updateAllTilesView();
+                handleWin();
+            }
         });
     }
 
